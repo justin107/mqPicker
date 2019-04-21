@@ -1,0 +1,259 @@
+@charset "utf-8";
+$disabledColor                  :#a9a9a9;//禁用默认颜色
+$aMap-picker-fontSize           : 14px;//字体大小
+$primaryColor                   : rgba(46,182,170,1);//主色
+$selectedColor                  : #c6c6c6;//选中颜色
+$inputBorderColor               : #E7E7EB;//输入框颜色
+$inputBorderHeight              : 32px;//输入框行高
+$inputPadding                   : 0 30px 0 10px;//输入框边距
+$inputPaddingRight              : 30px;//输入框右边框
+$inputBorderRadius              : 0;//输入框圆角
+$icoColor                       : #c6c6c6;//下拉箭头颜色
+$icoSize                        : 6px;//下拉箭头大小
+$placeholderColor               : #9a9a9a;//输入框占位符颜色
+$inputColor                     : #666;//模拟输入框颜色
+
+$tab-head-bgColor               : #F4F5F9;//选项卡TAB头背景色
+$tab-head-height                : 45px;//选项卡TAB头高度
+$tab-head-activeColor           : #fff;//点击激活TAB颜色
+
+$tab-pane-mixHeight             : 100px;//tab-pane最小高度
+$tab-pane-maxHeight             : 200px;//tab-pane最小高度
+$tab-pane-bottomColor           : transparent; //下划线颜色
+$tab-pane-fontColor             : #222;//tab面板字体颜色
+
+$buttonRadius                   : 1px;//按钮圆角
+$buttonFontSize                 : 12px;//按钮字体大小
+$buttonPadding                  : 0 20px;//按钮内间距
+
+@function vw( $value ) {
+  @return ( $value / 1920 / 100 ) + vw;
+}
+
+.aMap-picker-map {width:600px;height:300px;}
+
+.aMap-picker-area {padding:0; margin:0;position: relative;
+  *,
+  *:before,
+  *:after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+  }
+  div,dl,dt,dd,ul,li,input,p{padding:0; margin:0;}
+  i,em{font-style: normal;font-weight: normal;}
+
+  .border_cort, .border_corr, .border_corb, .border_corl {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-width: $icoSize;
+    overflow: hidden;
+  }
+  .border_cort {
+    border-color: $icoColor transparent transparent;
+    border-style: solid dotted dotted;
+  }
+  .border_corr {
+    border-color: transparent $icoColor transparent transparent;
+    border-style: dotted solid dotted dotted;
+  }
+  .border_corb {
+    border-color: transparent transparent $icoColor;
+    border-style: dotted dotted solid;
+  }
+  .border_corl {
+    border-color: transparent transparent transparent $icoColor;
+    border-style: dotted dotted dotted solid;
+  }
+  .aMap-picker-input-box { position: relative;
+    .input-placeholder {font-size: 14px;position: absolute;left:10px;top:50%;transform: translateY(-50%);cursor: pointer;color: $placeholderColor;}
+    .input-area {
+      border-radius: $inputBorderRadius;
+      padding:$inputPadding;
+      border: 1px solid $inputBorderColor;
+      line-height:$inputBorderHeight;
+      height:$inputBorderHeight;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      color: $inputColor;
+      font-size: 0;
+
+      > span {font-size: 14px;}
+
+      .input-area-province {}
+      .input-area-city {}
+      .input-area-area {}
+      .input-area-post {}
+
+    }
+    .ico-arrow {position: absolute;right:($inputPaddingRight - $icoSize*2 )/2;top:50%;transform: translateY(-50%);margin-top:$icoSize/2;}
+  }
+}
+
+.aMap-picker-tab-out,.aMap-picker-area {//保护重置样式
+  .aMap-picker-tab {
+    user-select: none;
+    display: none;
+    -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+
+    *,
+    *:before,
+    *:after {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+    }
+    div,dl,dt,dd,ul,li,input,p{padding:0; margin:0;}
+    i,em{font-style: normal;font-weight: normal;}
+
+    &.aMap-picker-tab-float {//不占位浮窗
+      position: absolute;
+      left: 0;
+      right: 0;
+      top:$inputBorderHeight;
+      z-index: 100;
+    }
+
+    &.aMap-picker-tab-layer {//页面中间浮窗
+      position: absolute;
+      left:50%;
+      right: 0;
+      top:50%;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: 999;
+    }
+    //tab头
+    .aMap-picker-tab-head {
+      height: $tab-head-height;
+      display: flex;
+      align-items:stretch;
+      align-content:center;
+      justify-content:center;
+      font-size: $aMap-picker-fontSize;
+      > div {flex:1;text-align: center;overflow: hidden;cursor: pointer;position: relative;
+        &.tab-head-area-post {display: none;}
+        span {cursor: pointer;position: absolute;top: 0;bottom: 0;left: 0;right: 0;line-height:$tab-head-height;background-color: $tab-head-bgColor; }
+        input[type='radio'] {visibility: hidden;position: absolute;left:-99999em;}
+        input[type='radio']:checked + span {background-color:$tab-head-activeColor;color:$primaryColor;transition: background-color .2s;}
+      }
+    }
+    //tab内容
+    .aMap-picker-tab-pane {
+      //border: 1px solid $inputBorderColor;
+      //border-top:0;
+      background-color: #fff;
+      padding: 5px 0 5px 10px;
+      .space-letter {letter-spacing:1em;white-space:nowrap;margin-right:-1em;}
+
+      dd {position: relative;font-size: 0;line-height: 1;}
+
+      input[type='radio'],input[type='checkbox'] {visibility: hidden;position: absolute;left:-99999em;}
+      label {display: inline-block;vertical-align: top;font-size: $aMap-picker-fontSize;cursor: pointer;color: $tab-pane-fontColor;margin: 5px 0;
+        span {padding: 0 10px;}
+      }
+
+      .no-data {text-align: center;font-size:$aMap-picker-fontSize;color: $placeholderColor;padding: 20px;}
+
+
+
+      .tab-pane-area{
+        input[name='area'] + span {
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+        input[name='area']:checked + span {
+          background-color:$primaryColor;color: #fff;
+        }
+        input[name='area']:disabled + span{color: $disabledColor;}
+      }
+
+      .tab-pane-city{
+        input[name='city'] + span {
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+        input[name='city']:checked + span {
+          background-color:$primaryColor;color: #fff;
+        }
+        input[name='city']:disabled + span{color: $disabledColor;}
+      }
+
+
+      > div {
+        display: none;
+        &:first-child {display: block;}
+      }
+
+      //.tab-pane-city,
+      //.tab-pane-area,
+      //.tab-pane-area-post {display: none;}
+
+      .tab-pane-province {
+        background-color: white;
+        min-height: $tab-pane-mixHeight;
+        max-height: $tab-pane-maxHeight;
+        overflow-y: auto;
+        > div.tab-pane-box {}
+        dl {display: flex;align-items:center;padding:0;
+          dt {
+            text-align: center;
+            font-size: $aMap-picker-fontSize;
+            //padding-top: 5px;
+            //padding-right: 10px;
+            line-height: 1;
+            width:30px;}
+          input[name='province'] + span {
+            &:hover {
+              color: $primaryColor;
+            }
+          }
+          input[name='province']:checked + span {
+            background-color:$primaryColor;color: #fff;
+          }
+          input[name='province']:disabled + span{color: $disabledColor;}
+          dd {
+            border-bottom: 1px solid  $tab-pane-bottomColor;
+            padding-bottom:0;flex:1;}
+          &:last-child {
+            dd {border-bottom: 1px solid transparent;}
+          }
+        }
+      }
+    }
+    //按钮
+    .aMap-picker-tab-buttons {
+      display: none;
+      padding: 20px;
+      text-align: right;
+      font-size:$aMap-picker-fontSize;
+      .aMap-picker-tab-box {
+        display: inline-block;
+        border: 1px solid $primaryColor;
+        border-radius: $buttonRadius;
+        font-size: 0;
+        > span {
+          cursor: pointer;
+          line-height: 26px;
+          display: inline-block;
+          font-size: $buttonFontSize ;
+          padding: $buttonPadding;
+          color: $primaryColor;
+          border-left: 1px solid $primaryColor;
+          &:first-child {border-left:0;}
+        }
+        .aMap-btn-submit {}//确定
+        .aMap-btn-choose-all {}//全选
+        .aMap-btn-cancel {display: none;}//取消
+      }
+    }
+  }
+}
+
+
+

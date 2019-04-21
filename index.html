@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<!--    <script src="https://webapi.amap.com/js/require.js" data-main="./require-init"></script>-->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+<!--<div id="pickerMap" class="aMap-picker-map"></div>-->
+
+<div id="demo" class="">
+    <!--输入框-->
+<!--    <div class="aMap-picker-input-box">-->
+<!--        <i class="ico-arrow border_cort"></i>-->
+    <!--            <span class="input-placeholder">请输入省/市/区</span>-->
+<!--        <div class="input-area">-->
+<!--            <span class="input-area-province"></span>-->
+<!--            <span class="input-area-city"></span>-->
+<!--            <span class="input-area-area"></span>-->
+<!--            <span class="input-area-post"></span>-->
+<!--        </div>-->
+<!--    </div>-->
+    <!--考虑浮窗模式-->
+<!--    <div class="aMap-picker-tab">-->
+<!--        <div class="aMap-picker-tab-head">-->
+<!--            <div class="tab-head-province"><label><input name='tab-head-radio' type="radio" checked value="1"><span>省</span></label></div>-->
+<!--            <div class="tab-head-city"><label><input name='tab-head-radio' type="radio"  value="2"><span>市</span></label></div>-->
+<!--            <div class="tab-head-area"><label><input name='tab-head-radio' type="radio"  value="3"><span>区</span></label></div>-->
+<!--            <div class="tab-head-area-post"><label><input name='tab-head-radio' type="radio"><span>自定义区</span></label></div>-->
+<!--        </div>-->
+<!--        <div class="aMap-picker-tab-pane">-->
+<!--            <div class="tab-pane-province">-->
+<!--                <div class="tab-pane-box"></div>-->
+<!--            </div>-->
+<!--            <div class="tab-pane-city">-->
+<!--                <div class="tab-pane-box">-->
+<!--                    <p class="no-data">暂无数据</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="tab-pane-area">-->
+<!--                <div class="tab-pane-box">-->
+<!--                    <p class="no-data">暂无数据</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="tab-pane-area-post">-->
+<!--                <div class="tab-pane-box">-->
+<!--                     <p class="no-data">暂无数据</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--        <div class="aMap-picker-tab-buttons">-->
+<!--            <div class="aMap-picker-tab-buttons-box">-->
+<!--                <span class="aMap-btn-submit">确定</span>-->
+<!--                <span class="aMap-btn-choose-all">全选</span>-->
+<!--                <span class="aMap-btn-cancel">取消</span>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+</div>
+
+<div id="demo2"></div>
+
+
+<div id="demo3"></div>
+
+<div class="picker-result">
+    <p>选取结果，点确定后产出</p>
+    <p class="picker-result-box"></p>
+</div>
+
+
+</body>
+
+<script src="js/index.js"></script>
+<style>
+    #demo,#demo2,#demo3 {
+        width: 500px; margin: 0 auto;
+    }
+</style>
+<script>
+
+
+
+    // window.onload=function(){
+    //
+    //     window.AMap=AMap;
+    //
+    //     AMap.plugin('AMap.DistrictSearch', function () {
+    //         window.districtSearch = new AMap.DistrictSearch({
+    //             level: 'country',// 关键字对应的行政区级别，country表示国家
+    //             subdistrict: 1,//  显示下级行政区级数，1表示返回下一级行政区
+    //         });
+    //         console.log('AMap.plugin complete')
+    //     });
+    //
+    //
+    // };
+
+
+    $(document).ready(function (){
+
+
+        $('#demo').commonPicker({
+            layPosition:'float'
+        });
+
+        $('#demo2').commonPicker({
+            layPosition:'layer'
+        });
+
+        $('#demo3').commonPicker({
+            layPosition:'layer',
+            pickerLevel:{
+                name:['省啊','市啊'],
+                level:2,//设置级别，控制按钮等逻辑，默认省市区3级
+            },
+        });
+
+
+    })
+
+
+</script>
+</html>
