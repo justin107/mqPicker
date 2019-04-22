@@ -30,7 +30,7 @@ $buttonPadding                  : 0 20px;//按钮内间距
   @return ( $value / 1920 / 100 ) + vw;
 }
 
-.aMap-picker-map {width:600px;height:300px;}
+//.aMap-picker-map {width:600px;height:300px;}
 
 .aMap-picker-area {padding:0; margin:0;position: relative;
   *,
@@ -160,28 +160,28 @@ $buttonPadding                  : 0 20px;//按钮内间距
 
 
 
-      .tab-pane-area{
-        input[name='area'] + span {
-          &:hover {
-            color: $primaryColor;
-          }
-        }
-        input[name='area']:checked + span {
-          background-color:$primaryColor;color: #fff;
-        }
-        input[name='area']:disabled + span{color: $disabledColor;}
-      }
+      //.tab-pane-area{
+      //  input[name='area'] + span {
+      //    &:hover {
+      //      color: $primaryColor;
+      //    }
+      //  }
+      //  input[name='area']:checked + span {
+      //    background-color:$primaryColor;color: #fff;
+      //  }
+      //  input[name='area']:disabled + span{color: $disabledColor;}
+      //}
 
-      .tab-pane-city{
-        input[name='city'] + span {
+      .tab-pane {
+        input + span {
           &:hover {
             color: $primaryColor;
           }
         }
-        input[name='city']:checked + span {
+        input:checked + span {
           background-color:$primaryColor;color: #fff;
         }
-        input[name='city']:disabled + span{color: $disabledColor;}
+        input:disabled + span{color: $disabledColor;}
       }
 
 
@@ -208,15 +208,15 @@ $buttonPadding                  : 0 20px;//按钮内间距
             //padding-right: 10px;
             line-height: 1;
             width:30px;}
-          input[name='province'] + span {
+          input[type='radio'] + span {
             &:hover {
               color: $primaryColor;
             }
           }
-          input[name='province']:checked + span {
+          input[type='radio']:checked + span {
             background-color:$primaryColor;color: #fff;
           }
-          input[name='province']:disabled + span{color: $disabledColor;}
+          input[type='radio']:disabled + span{color: $disabledColor;}
           dd {
             border-bottom: 1px solid  $tab-pane-bottomColor;
             padding-bottom:0;flex:1;}

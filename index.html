@@ -86,45 +86,72 @@
 </style>
 <script>
 
+    //高德相关
+    function loadAmapApi(amapKey,amapVersion) {
+        if(!amapKey) amapKey='';
+        if(!amapVersion) amapVersion='1.4.14';
+        // var amapApiUrl = 'https://webapi.amap.com/maps?v='+amapVersion+'&key='+amapKey+'&callback=apiLoad',//加载JS api
+        var amapApiUrl = 'https://webapi.amap.com/maps?v='+amapVersion+'&key='+amapKey+'&plugin=AMap.DistrictSearch'+'&callback=apiLoad',//加载JS api
+            jsapi = document.createElement('script');
+
+        jsapi.charset = 'utf-8';
+        jsapi.src = amapApiUrl;
+        document.head.appendChild(jsapi);
+    }
+
+    loadAmapApi('7a83c014e37800a4ecb7193e306b67ba');
+    /*
+    window.apiLoad=function (){//异步加载
+        AMap.plugin('AMap.DistrictSearch', function () {
+            window.districtSearch = new AMap.DistrictSearch({
+                level: 'country',// 关键字对应的行政区级别，country表示国家
+                subdistrict: 1,//  显示下级行政区级数，1表示返回下一级行政区
+            });
+            console.log('AMap.plugin complete')
+
+            $('#demo').commonPicker({
+                layPosition:'float'
+            });
+
+            $('#demo2').commonPicker({
+                layPosition:'layer'
+            });
+
+            $('#demo3').commonPicker({
+                layPosition:'layer',
+                pickerLevel:{
+                    name:['省啊','市啊'],
+                    level:2,//设置级别，控制按钮等逻辑，默认省市区3级
+                },
+            });
 
 
-    // window.onload=function(){
-    //
-    //     window.AMap=AMap;
-    //
-    //     AMap.plugin('AMap.DistrictSearch', function () {
-    //         window.districtSearch = new AMap.DistrictSearch({
-    //             level: 'country',// 关键字对应的行政区级别，country表示国家
-    //             subdistrict: 1,//  显示下级行政区级数，1表示返回下一级行政区
-    //         });
-    //         console.log('AMap.plugin complete')
-    //     });
-    //
-    //
-    // };
+        });
+    }*/
 
 
-    $(document).ready(function (){
-
+    window.apiLoad=function (){//异步加载
+        window.districtSearch = new AMap.DistrictSearch({
+            subdistrict: 1,//  显示下级行政区级数，1表示返回下一级行政区
+        });
 
         $('#demo').commonPicker({
             layPosition:'float'
         });
 
         $('#demo2').commonPicker({
-            layPosition:'layer'
+            layPosition:'layer',
+            isMultiple:false,
         });
 
         $('#demo3').commonPicker({
             layPosition:'layer',
+            pickerClass:'pickerCity',
             pickerLevel:{
                 name:['省啊','市啊'],
-                level:2,//设置级别，控制按钮等逻辑，默认省市区3级
             },
         });
-
-
-    })
+    }
 
 
 </script>
