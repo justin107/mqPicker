@@ -26,7 +26,7 @@ https://lbs.amap.com/api/javascript-api/summary
 
 9、单级自定义数据
 
-10、支持级别调整
+10、**支持级别调整**
 
 next
 

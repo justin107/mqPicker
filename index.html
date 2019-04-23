@@ -128,7 +128,9 @@
 
         });
     }*/
-
+    function test(){
+        return 1111
+    }
 
     window.apiLoad=function (){//异步加载
         window.districtSearch = new AMap.DistrictSearch({
@@ -136,12 +138,15 @@
         });
 
         $('#demo').commonPicker({
-            layPosition:'float'
+            layPosition:'float',
+            lastIsMultiple:true,
         });
 
         $('#demo2').commonPicker({
             layPosition:'layer',
-            isMultiple:false,
+            lastIsMultiple:false,
+            pickerClass:'pickerPost',
+            postAjax: test
         });
 
         $('#demo3').commonPicker({

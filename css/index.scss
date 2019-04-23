@@ -173,6 +173,11 @@ $buttonPadding                  : 0 20px;//按钮内间距
       //}
 
       .tab-pane {
+        background-color: white;
+        min-height: $tab-pane-mixHeight;
+        max-height: $tab-pane-maxHeight;
+        overflow-y: auto;
+
         input + span {
           &:hover {
             color: $primaryColor;
@@ -195,10 +200,7 @@ $buttonPadding                  : 0 20px;//按钮内间距
       //.tab-pane-area-post {display: none;}
 
       .tab-pane-province {
-        background-color: white;
-        min-height: $tab-pane-mixHeight;
-        max-height: $tab-pane-maxHeight;
-        overflow-y: auto;
+
         > div.tab-pane-box {}
         dl {display: flex;align-items:center;padding:0;
           dt {
@@ -229,23 +231,28 @@ $buttonPadding                  : 0 20px;//按钮内间距
     //按钮
     .aMap-picker-tab-buttons {
       display: none;
-      padding: 20px;
+      padding:10px 20px;
       text-align: right;
-      font-size:$aMap-picker-fontSize;
+      font-size: 0;
       .aMap-picker-tab-box {
+        height: 26px;
+        line-height: 26px;
         display: inline-block;
+        vertical-align: middle;
         border: 1px solid $primaryColor;
         border-radius: $buttonRadius;
-        font-size: 0;
         > span {
           cursor: pointer;
+          height: 26px;
           line-height: 26px;
           display: inline-block;
+          vertical-align: middle;
           font-size: $buttonFontSize ;
           padding: $buttonPadding;
           color: $primaryColor;
           border-left: 1px solid $primaryColor;
           &:first-child {border-left:0;}
+          &:only-child {border-left:0;}
         }
         .aMap-btn-submit {}//确定
         .aMap-btn-choose-all {}//全选
