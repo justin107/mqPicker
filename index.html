@@ -128,9 +128,7 @@
 
         });
     }*/
-    function test(){
-        return 1111
-    }
+
 
     window.apiLoad=function (){//异步加载
         window.districtSearch = new AMap.DistrictSearch({
@@ -144,16 +142,17 @@
 
         $('#demo2').commonPicker({
             layPosition:'layer',
-            lastIsMultiple:false,
-            pickerClass:'pickerPost',
-            postAjax: test
+            lastIsMultiple:true,
+            pickerLevel:{
+                name:['省','市','区','街道'],
+            },
         });
 
         $('#demo3').commonPicker({
             layPosition:'layer',
             pickerClass:'pickerCity',
             pickerLevel:{
-                name:['省啊','市啊'],
+                name:['省啊'],
             },
         });
     }

@@ -199,6 +199,14 @@
     padding: 10px 20px;
     text-align: right;
     font-size: 0; }
+    .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-buttons *,
+    .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-buttons *:before,
+    .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-buttons *:after, .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-buttons *,
+    .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-buttons *:before,
+    .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-buttons *:after {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent; }
     .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-buttons .aMap-picker-tab-box, .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-buttons .aMap-picker-tab-box {
       height: 26px;
       line-height: 26px;
