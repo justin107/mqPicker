@@ -252,8 +252,8 @@ $buttonPadding                  : 0 20px;//按钮内间距
           cursor: pointer;
           height: 26px;
           line-height: 26px;
-          display: inline-block;
-          vertical-align: middle;
+          //display: inline-block;
+          //vertical-align: middle;
           font-size: $buttonFontSize ;
           padding: $buttonPadding;
           color: $primaryColor;
