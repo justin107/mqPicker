@@ -100,35 +100,6 @@
     }
 
     loadAmapApi('7a83c014e37800a4ecb7193e306b67ba');
-    /*
-    window.apiLoad=function (){//异步加载
-        AMap.plugin('AMap.DistrictSearch', function () {
-            window.districtSearch = new AMap.DistrictSearch({
-                level: 'country',// 关键字对应的行政区级别，country表示国家
-                subdistrict: 1,//  显示下级行政区级数，1表示返回下一级行政区
-            });
-            console.log('AMap.plugin complete')
-
-            $('#demo').commonPicker({
-                layPosition:'float'
-            });
-
-            $('#demo2').commonPicker({
-                layPosition:'layer'
-            });
-
-            $('#demo3').commonPicker({
-                layPosition:'layer',
-                pickerLevel:{
-                    name:['省啊','市啊'],
-                    level:2,//设置级别，控制按钮等逻辑，默认省市区3级
-                },
-            });
-
-
-        });
-    }*/
-
 
     window.apiLoad=function (){//异步加载
         window.districtSearch = new AMap.DistrictSearch({
@@ -151,8 +122,10 @@
         $('#demo3').commonPicker({
             layPosition:'layer',
             pickerClass:'pickerCity',
+            lastIsMultiple:true,
+            pickDefaultName:'湖北省',
             pickerLevel:{
-                name:['省啊'],
+                name:['市'],
             },
         });
     }

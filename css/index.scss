@@ -30,8 +30,6 @@ $buttonPadding                  : 0 20px;//按钮内间距
   @return ( $value / 1920 / 100 ) + vw;
 }
 
-//.aMap-picker-map {width:600px;height:300px;}
-
 .aMap-picker-area {padding:0; margin:0;position: relative;
   *,
   *:before,
@@ -43,29 +41,6 @@ $buttonPadding                  : 0 20px;//按钮内间距
   div,dl,dt,dd,ul,li,input,p{padding:0; margin:0;}
   i,em{font-style: normal;font-weight: normal;}
 
-  .border_cort, .border_corr, .border_corb, .border_corl {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-width: $icoSize;
-    overflow: hidden;
-  }
-  .border_cort {
-    border-color: $icoColor transparent transparent;
-    border-style: solid dotted dotted;
-  }
-  .border_corr {
-    border-color: transparent $icoColor transparent transparent;
-    border-style: dotted solid dotted dotted;
-  }
-  .border_corb {
-    border-color: transparent transparent $icoColor;
-    border-style: dotted dotted solid;
-  }
-  .border_corl {
-    border-color: transparent transparent transparent $icoColor;
-    border-style: dotted dotted dotted solid;
-  }
   .aMap-picker-input-box { position: relative;
     .input-placeholder {font-size: 14px;position: absolute;left:10px;top:50%;transform: translateY(-50%);cursor: pointer;color: $placeholderColor;}
     .input-area {
@@ -80,20 +55,19 @@ $buttonPadding                  : 0 20px;//按钮内间距
       cursor: pointer;
       color: $inputColor;
       font-size: 0;
-
       > span {font-size: 14px;}
 
-      .input-area-province {}
-      .input-area-city {}
-      .input-area-area {}
-      .input-area-post {}
-
     }
-    .ico-arrow {position: absolute;right:($inputPaddingRight - $icoSize*2 )/2;top:50%;transform: translateY(-50%);margin-top:$icoSize/2;}
+    .ico-arrow {position: absolute;right:($inputPaddingRight - $icoSize*2 )/2;top:50%;background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAoUlEQVQ4T93SMQoCQQyF4W9FUcRrWdloIQhiZ+WV7ATBQlALL2VlqSgqgUFk2RWW7Xa6ycz7k7wkU/NkNfUaBhhiiTmeJd60scUG5/jz60E3BW8YF0BCfEQPI9zzgLh3cMILEzxSJRE/JOj0J144hci0Rz9lCkaUe8Uswb8dlo2xhR0GCOAFC7zz3vzbg3hbp3JXReIiDyovZsM2sXL/IfgABvwZETHyG7YAAAAASUVORK5CYII=");background-repeat: no-repeat;width:10px;height: 10px;background-position: center center;background-size: 10px 10px;opacity: .8;transform: translateY(-50%);transition: all .2s;
+      &.activeMove {
+        transform:translateY(-50%) rotate(-180deg);
+      }
+    }
   }
 }
 
-.aMap-picker-tab-out,.aMap-picker-area {//保护重置样式
+.aMap-picker-tab-out,
+.aMap-picker-area {//保护重置样式
   .aMap-picker-tab {
     user-select: none;
     display: none;
@@ -143,8 +117,6 @@ $buttonPadding                  : 0 20px;//按钮内间距
     }
     //tab内容
     .aMap-picker-tab-pane {
-      //border: 1px solid $inputBorderColor;
-      //border-top:0;
       background-color: #fff;
       padding: 5px 0 5px 10px;
       .space-letter {letter-spacing:1em;white-space:nowrap;margin-right:-1em;}
@@ -157,20 +129,6 @@ $buttonPadding                  : 0 20px;//按钮内间距
       }
 
       .no-data {text-align: center;font-size:$aMap-picker-fontSize;color: $placeholderColor;padding: 20px;}
-
-
-
-      //.tab-pane-area{
-      //  input[name='area'] + span {
-      //    &:hover {
-      //      color: $primaryColor;
-      //    }
-      //  }
-      //  input[name='area']:checked + span {
-      //    background-color:$primaryColor;color: #fff;
-      //  }
-      //  input[name='area']:disabled + span{color: $disabledColor;}
-      //}
 
       .tab-pane {
         background-color: white;
@@ -194,10 +152,6 @@ $buttonPadding                  : 0 20px;//按钮内间距
         display: none;
         &:first-child {display: block;}
       }
-
-      //.tab-pane-city,
-      //.tab-pane-area,
-      //.tab-pane-area-post {display: none;}
 
       .tab-pane-province {
 
@@ -230,13 +184,6 @@ $buttonPadding                  : 0 20px;//按钮内间距
     }
     //按钮
     .aMap-picker-tab-buttons {
-      *,
-      *:before,
-      *:after {
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
-      }
       display: none;
       padding:10px 20px;
       text-align: right;
@@ -244,16 +191,14 @@ $buttonPadding                  : 0 20px;//按钮内间距
       .aMap-picker-tab-box {
         height: 26px;
         line-height: 26px;
+        font-size: 0;
         display: inline-block;
-        vertical-align: middle;
         border: 1px solid $primaryColor;
         border-radius: $buttonRadius;
+
         > span {
           cursor: pointer;
-          height: 26px;
-          line-height: 26px;
-          //display: inline-block;
-          //vertical-align: middle;
+          line-height: 24px;
           font-size: $buttonFontSize ;
           padding: $buttonPadding;
           color: $primaryColor;
