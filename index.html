@@ -78,7 +78,8 @@
 
 </body>
 
-<script src="js/index.js"></script>
+<!--<script src="js/index.js"></script>-->
+<script src="js/picker.js"></script>
 <style>
     #demo,#demo2,#demo3 {
         width: 500px; margin: 0 auto;
@@ -106,29 +107,69 @@
             subdistrict: 1,//  显示下级行政区级数，1表示返回下一级行政区
         });
 
-        $('#demo').commonPicker({
+        // $('#demo').commonPicker({
+        //     layPosition:'float',
+        //     lastIsMultiple:true,
+        // });
+        //
+        // $('#demo2').commonPicker({
+        //     layPosition:'layer',
+        //     lastIsMultiple:true,
+        //     pickerLevel:{
+        //         name:['省','市','区','街道'],
+        //     },
+        // });
+        //
+        // $('#demo3').commonPicker({
+        //     layPosition:'layer',
+        //     pickerClass:'pickerCity',
+        //     lastIsMultiple:true,
+        //     pickDefaultName:'湖北省',
+        //     pickerLevel:{
+        //         name:['市'],
+        //     },
+        // });
+
+        var demo=new CommonPicker({
+            domMaster:'#demo',
             layPosition:'float',
             lastIsMultiple:true,
         });
 
-        $('#demo2').commonPicker({
-            layPosition:'layer',
-            lastIsMultiple:true,
+        var demo2=new CommonPicker({
+            domMaster:'#demo2',
             pickerLevel:{
-                name:['省','市','区','街道'],
+                name:['省','市','自定义'],
             },
+            layPosition:'layer',
+            lastIsMultiple:false,
+            pickerClass:'pickerAreaPost',
+            loadType:test
         });
 
-        $('#demo3').commonPicker({
-            layPosition:'layer',
-            pickerClass:'pickerCity',
-            lastIsMultiple:true,
-            pickDefaultName:'湖北省',
-            pickerLevel:{
-                name:['市'],
-            },
-        });
-    }
+        function test() {
+            console.log(this)
+
+            var tempData=[//临时数据
+                {name:'测试',value:'123456'},
+                {name:'测试2',value:'1234563'},
+                {name:'测试3',value:'12345633'},
+                {name:'测试4',value:'123456333'},
+                {name:'测试5',value:'1234563333'},
+                {name:'测试6',value:'12345633333'},
+                {name:'测试7',value:'12345633333'},
+                {name:'测试8',value:'123456333333'},
+                {name:'测试9',value:'3333333333333'}
+            ];
+
+            return tempData
+
+        }
+
+        console.log(demo2)
+
+
+    };
 
 
 </script>
