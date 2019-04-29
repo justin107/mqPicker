@@ -18,13 +18,13 @@ var CommonPicker=function(setting){
         pickerLevel:{
             name:['省','市','区'],
         },
+        // loadAjax:this.postAjax,
         separator:'，',//省市间隔符号
-        areaSeparator:'、',//区字符间隔
-        // loadType:this.postAjax(),
+        areaSeparator:'、',//区字符间隔,
         output:'value',//默认value,最后一级value
-                    //allName,全部名称
-                    //allValue,全部value
-                    //产出name,最后一级名称
+                        //allName,全部名称
+                        //allValue,全部value
+                        //产出name,最后一级名称
     };
     Object.assign(this.param,setting);
     //内部数据
@@ -133,8 +133,9 @@ Object.assign(CommonPicker.prototype,{
         if(self.param.pickerClass!=='pickerPost'){
             self.pickerSearch(self.param.searchName)
         }else {
-            var data=self.param.loadType();
-            self.updateArea(data)
+            // var postData=self.param.loadAjax();
+            // console.log(postData)
+            // self.updateArea(postData)
         }
 
         //点击消失，逻辑可能改成点击重置
@@ -203,11 +204,14 @@ Object.assign(CommonPicker.prototype,{
                         var level=$(this).parent().attr('level');
                         if(self.param.pickerClass==='pickerAreaPost' && level==="city"){
                             console.log('省市区自定义')
+                            self.param.loadAjax({name:labelName})
+                                .done(function(data){
+                                    console.log("数据",data.data);
+                                    self.updateArea(data.data)
+                                });
                         }else {
-                            self.pickerSearch(self.tabData[index].value);//默认请求
+                            self.pickerSearch(labelName);//默认请求
                         }
-
-
                     }
 
                     //重置下一级数据
@@ -536,15 +540,15 @@ Object.assign(CommonPicker.prototype,{
             return a.name.length-b.name.length
         });
         //为自定义添加转义adcode=value
-        if(self.param.pickerClass==='pickerPost'){
+        if(self.param.pickerClass==='pickerPost' || self.param.pickerClass==='pickerAreaPost'){
             areaData.forEach(function (item) {
                 item.adcode=item.value;
-                item.level="";
+                item.level=item.level || "";
             })
         }
 
         indexData.data=areaData;
-        self.renderArea(areaData)
+        self.renderArea(areaData);
         console.log(areaData)
     },
 
@@ -598,7 +602,7 @@ Object.assign(CommonPicker.prototype,{
         self.domMaster.find('.input-placeholder').show();
     },
 
-    postAjax:function (){//接口自定义
+    postAjax:function (callback){//接口自定义
         console.log(111)
     }
 });
@@ -626,8 +630,40 @@ function isString(str){//判断是否是字符串,省为数组
     return (typeof str=='string')&&str.constructor===String;
 }
 
-// CommonPicker({//重自定义
-//     postAjax:function () {
+
+// util.ajax = function(obj)  {
+//     var deferred = $.Deferred();
+//     $.ajax({
+//         url: obj.url || '/interface',
+//         data: obj.data || {},
+//         dataType: obj.dataType || 'json',
+//         type: obj.type || 'get',
+//     }).success(function (data) {
+//         if (data.code != 200) {
+//             deferred.reject(data.err_msg);
+//         } else {
+//             deferred.resolve(data.data)
+//         }
+//     }).error(function (err) {
+//         deferred.reject('接口出错，请重试');
+//     })
+//     return deferred.fail(function (err) {
+//         alert(err)
+//     });
+// }
 //
+//
+// // 调用
+// var obj = {
+//     url: '/interface',
+//     data: {
+//         interface_name: 'name',
+//         interface_params: JSON.stringify({})
 //     }
-// });
+// };
+// util.ajax(obj)
+//     .done(function(data){
+//         dosomething(data)
+//     })
+
+

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>demo</title>
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-<!--    <script src="https://webapi.amap.com/js/require.js" data-main="./require-init"></script>-->
     <link rel="stylesheet" href="css/index.css">
 </head>
 
@@ -76,9 +75,9 @@
 </div>
 
 
-</body>
 
-<!--<script src="js/index.js"></script>-->
+
+
 <script src="js/picker.js"></script>
 <style>
     #demo,#demo2,#demo3 {
@@ -107,29 +106,6 @@
             subdistrict: 1,//  显示下级行政区级数，1表示返回下一级行政区
         });
 
-        // $('#demo').commonPicker({
-        //     layPosition:'float',
-        //     lastIsMultiple:true,
-        // });
-        //
-        // $('#demo2').commonPicker({
-        //     layPosition:'layer',
-        //     lastIsMultiple:true,
-        //     pickerLevel:{
-        //         name:['省','市','区','街道'],
-        //     },
-        // });
-        //
-        // $('#demo3').commonPicker({
-        //     layPosition:'layer',
-        //     pickerClass:'pickerCity',
-        //     lastIsMultiple:true,
-        //     pickDefaultName:'湖北省',
-        //     pickerLevel:{
-        //         name:['市'],
-        //     },
-        // });
-
         var demo=new CommonPicker({
             domMaster:'#demo',
             layPosition:'float',
@@ -144,33 +120,17 @@
             layPosition:'layer',
             lastIsMultiple:false,
             pickerClass:'pickerAreaPost',
-            loadType:test
+            loadAjax:test
         });
 
-        function test() {
-            console.log(this)
-
-            var tempData=[//临时数据
-                {name:'测试',value:'123456'},
-                {name:'测试2',value:'1234563'},
-                {name:'测试3',value:'12345633'},
-                {name:'测试4',value:'123456333'},
-                {name:'测试5',value:'1234563333'},
-                {name:'测试6',value:'12345633333'},
-                {name:'测试7',value:'12345633333'},
-                {name:'测试8',value:'123456333333'},
-                {name:'测试9',value:'3333333333333'}
-            ];
-
-            return tempData
-
+        var url="https://www.easy-mock.com/mock/59a9210de0dc66334198c0cd/data";
+        function test(data){
+            console.log(data)
+                return $.ajax({
+                    url: url,
+                    data:data,
+                })
         }
-
-        console.log(demo2)
-
-
     };
-
-
 </script>
 </html>

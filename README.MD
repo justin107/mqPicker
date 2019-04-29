@@ -10,7 +10,7 @@ https://lbs.amap.com/api/javascript-api/summary
 
 1、**业务产出districtCode**
 
-2、支持区域范围
+~~2、支持区域范围~~
 
 3、**支持多实例**
 
@@ -24,7 +24,7 @@ https://lbs.amap.com/api/javascript-api/summary
 
 8，**支持单选、多选、全选**
 
-9、单级自定义数据
+9、**单级自定义数据**
 
 10、**支持级别调整**
 
