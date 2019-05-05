@@ -15,7 +15,7 @@ code by justin
 等等，符合大多数业务场景
 统一接口参数也可以全自定义无限拓展
 
-JQ，高德js API，已有微调即可
+需要JQ，高德js API，已有微调即可
 https://lbs.amap.com/api/javascript-api/summary
 
 
