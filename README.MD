@@ -18,7 +18,7 @@ code by justin
 需要JQ，高德js API，已有微调即可
 https://lbs.amap.com/api/javascript-api/summary
 
-![Image text](https://raw.githubusercontent.com/justin107/mqPicker/master/img-folder/20190505145031.png)
+![Image text](https://raw.githubusercontent.com/justin107/mqPicker/master/img-folder/20190505150404.png)
 
 
 功能点

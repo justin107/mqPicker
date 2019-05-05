@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>demo</title>
+    <title>mqPicker demo</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
 </head>
@@ -12,7 +12,7 @@
 <!--<div id="pickerMap" class="aMap-picker-map"></div>-->
 <h2>基本配置</h2>
 <code>
-    new CommonPicker({
+    new MqPicker({
         some configure
     })
 </code>
@@ -55,10 +55,7 @@
     </code>
 </div>
 
-
-<script src="js/mqPicker.js"></script>
-
-
+</body>
 
 <style type="text/css">
     body {text-align: center}
@@ -79,8 +76,10 @@
         width: 500px; margin: 0 auto;
     }
 </style>
-<script>
 
+<script src="js/mqPicker.js"></script>
+
+<script>
     //高德相关
     function loadAmapApi(amapKey,amapVersion) {
         if(!amapKey) amapKey='';
@@ -139,10 +138,10 @@
 
         var url="https://www.easy-mock.com/mock/59a9210de0dc66334198c0cd/data";
         function test(data){
-                return $.ajax({
-                    url: url,
-                    data:data,
-                })
+            return $.ajax({
+                url: url,
+                data:data,
+            })
         }
     };
 </script>
