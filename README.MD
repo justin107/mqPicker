@@ -1,4 +1,5 @@
-**高德省市区选择,20190408beta第二版本**
+**高德省市区选择,beta第二版本**
+
 code by justin
 
 **业务场景**
@@ -16,6 +17,9 @@ code by justin
 
 JQ，高德js API，已有微调即可
 https://lbs.amap.com/api/javascript-api/summary
+
+
+
 
 功能点
 
