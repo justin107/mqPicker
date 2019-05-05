@@ -56,7 +56,7 @@
 </div>
 
 
-<script src="js/picker.js"></script>
+<script src="js/mqPicker.js"></script>
 
 
 
@@ -101,32 +101,32 @@
             subdistrict: 1,//  显示下级行政区级数，1表示返回下一级行政区
         });
 
-        var demo1=new CommonPicker({
+        var demo1=new MqPicker({
             domMaster:'#demo1',
             layPosition:'float',
             lastIsMultiple:false,
         });
 
-        var demo2=new CommonPicker({
+        var demo2=new MqPicker({
             domMaster:'#demo2',
             layPosition:'float',
             lastIsMultiple:true,
         });
 
-        var demo3=new CommonPicker({
+        var demo3=new MqPicker({
             domMaster:'#demo3',
             layPosition:'float',
             placeholderText:'你试试换个提示',
             lastIsMultiple:true,
         });
 
-        var demo4=new CommonPicker({
+        var demo4=new MqPicker({
             domMaster:'#demo4',
             layPosition:'layer',
             lastIsMultiple:true,
         });
 
-        var demo10=new CommonPicker({
+        var demo10=new MqPicker({
             domMaster:'#demo4',
             pickerLevel:{
                 name:['省','市','自定义'],

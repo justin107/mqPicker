@@ -1,4 +1,4 @@
-var CommonPicker=function(setting){
+var MqPicker=function(setting){
     //可配参数
     this.param={
         domMaster:null,//传入DOM
@@ -41,7 +41,7 @@ var CommonPicker=function(setting){
     this.init();
 };
 
-Object.assign(CommonPicker.prototype,{
+Object.assign(MqPicker.prototype,{
     init:function(){
         var self=this;
         self.initData();
