@@ -45,7 +45,7 @@ $buttonPadding                  : 0 20px;//按钮内间距
 }
 
 
-.aMap-picker-area {padding:0; margin:0;position: relative;
+.aMap-picker-area {padding:0; margin:0;position: relative;text-align: left;
   *,
   *:before,
   *:after {
@@ -82,8 +82,9 @@ $buttonPadding                  : 0 20px;//按钮内间距
 }
 
 .aMap-picker-tab-out,
-.aMap-picker-area {//保护重置样式
+.aMap-picker-area {
   .aMap-picker-tab {
+    text-align: left;
     user-select: none;
     display: none;
     -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);

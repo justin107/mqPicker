@@ -3,84 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>demo</title>
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
 
 <!--<div id="pickerMap" class="aMap-picker-map"></div>-->
+<h2>基本配置</h2>
+<code>
+    new CommonPicker({
+        some configure
+    })
+</code>
 
-<div id="demo" class="">
-    <!--输入框-->
-<!--    <div class="aMap-picker-input-box">-->
-<!--        <i class="ico-arrow border_cort"></i>-->
-    <!--            <span class="input-placeholder">请输入省/市/区</span>-->
-<!--        <div class="input-area">-->
-<!--            <span class="input-area-province"></span>-->
-<!--            <span class="input-area-city"></span>-->
-<!--            <span class="input-area-area"></span>-->
-<!--            <span class="input-area-post"></span>-->
-<!--        </div>-->
-<!--    </div>-->
-    <!--考虑浮窗模式-->
-<!--    <div class="aMap-picker-tab">-->
-<!--        <div class="aMap-picker-tab-head">-->
-<!--            <div class="tab-head-province"><label><input name='tab-head-radio' type="radio" checked value="1"><span>省</span></label></div>-->
-<!--            <div class="tab-head-city"><label><input name='tab-head-radio' type="radio"  value="2"><span>市</span></label></div>-->
-<!--            <div class="tab-head-area"><label><input name='tab-head-radio' type="radio"  value="3"><span>区</span></label></div>-->
-<!--            <div class="tab-head-area-post"><label><input name='tab-head-radio' type="radio"><span>自定义区</span></label></div>-->
-<!--        </div>-->
-<!--        <div class="aMap-picker-tab-pane">-->
-<!--            <div class="tab-pane-province">-->
-<!--                <div class="tab-pane-box"></div>-->
-<!--            </div>-->
-<!--            <div class="tab-pane-city">-->
-<!--                <div class="tab-pane-box">-->
-<!--                    <p class="no-data">暂无数据</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="tab-pane-area">-->
-<!--                <div class="tab-pane-box">-->
-<!--                    <p class="no-data">暂无数据</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="tab-pane-area-post">-->
-<!--                <div class="tab-pane-box">-->
-<!--                     <p class="no-data">暂无数据</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+<h3>普通省市区(单选)</h3>
+<div id="demo1"></div>
 
-
-<!--        <div class="aMap-picker-tab-buttons">-->
-<!--            <div class="aMap-picker-tab-buttons-box">-->
-<!--                <span class="aMap-btn-submit">确定</span>-->
-<!--                <span class="aMap-btn-choose-all">全选</span>-->
-<!--                <span class="aMap-btn-cancel">取消</span>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--    </div>-->
+<div>
+    <code>
+        lastIsMultiple:false,
+    </code>
 </div>
 
+<h3>普通省市区(多选)</h3>
 <div id="demo2"></div>
 
+<div>
+    <code>
+        lastIsMultiple:true,
+    </code>
+</div>
 
+<h3>普通省市区(自定义提示)</h3>
 <div id="demo3"></div>
 
-<div class="picker-result">
-    <p>选取结果，点确定后产出</p>
-    <p class="picker-result-box"></p>
+<div>
+    <code>
+        placeholderText:'你试试换个提示'
+    </code>
 </div>
 
 
 
+<h3>省市区(弹窗居中显示)</h3>
+<div id="demo4"></div>
+
+<div>
+    <code>
+        layPosition:'layer',
+    </code>
+</div>
 
 
 <script src="js/picker.js"></script>
-<style>
-    #demo,#demo2,#demo3 {
+
+
+
+<style type="text/css">
+    body {text-align: center}
+    code {
+        word-wrap: break-word;word-break: break-all;color: #2eb6aa;
+    }
+
+    #demo1,
+    #demo2,
+    #demo3,
+    #demo4,
+    #demo5,
+    #demo6,
+    #demo7,
+    #demo8,
+    #demo9,
+    #demo10{
         width: 500px; margin: 0 auto;
     }
 </style>
@@ -106,26 +101,44 @@
             subdistrict: 1,//  显示下级行政区级数，1表示返回下一级行政区
         });
 
-        var demo=new CommonPicker({
-            domMaster:'#demo',
+        var demo1=new CommonPicker({
+            domMaster:'#demo1',
             layPosition:'float',
-            lastIsMultiple:true,
+            lastIsMultiple:false,
         });
 
         var demo2=new CommonPicker({
             domMaster:'#demo2',
+            layPosition:'float',
+            lastIsMultiple:true,
+        });
+
+        var demo3=new CommonPicker({
+            domMaster:'#demo3',
+            layPosition:'float',
+            placeholderText:'你试试换个提示',
+            lastIsMultiple:true,
+        });
+
+        var demo4=new CommonPicker({
+            domMaster:'#demo4',
+            layPosition:'layer',
+            lastIsMultiple:true,
+        });
+
+        var demo10=new CommonPicker({
+            domMaster:'#demo4',
             pickerLevel:{
                 name:['省','市','自定义'],
             },
             layPosition:'layer',
-            lastIsMultiple:false,
+            lastIsMultiple:true,
             pickerClass:'pickerAreaPost',
             loadAjax:test
         });
 
         var url="https://www.easy-mock.com/mock/59a9210de0dc66334198c0cd/data";
         function test(data){
-            console.log(data)
                 return $.ajax({
                     url: url,
                     data:data,
