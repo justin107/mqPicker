@@ -105,7 +105,7 @@ $buttonPadding                  : 0 20px;//按钮内间距
       left: 0;
       right: 0;
       top:$inputBorderHeight;
-      z-index: 100;
+      z-index: 101;
     }
 
     &.aMap-picker-tab-layer {//页面中间浮窗
@@ -114,7 +114,7 @@ $buttonPadding                  : 0 20px;//按钮内间距
       right: 0;
       top:50%;
       transform: translateX(-50%) translateY(-50%);
-      z-index: 999;
+      z-index: 102;
     }
     //tab头
     .aMap-picker-tab-head {

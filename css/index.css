@@ -105,7 +105,7 @@
     left: 0;
     right: 0;
     top: 32px;
-    z-index: 100; }
+    z-index: 101; }
   .aMap-picker-tab-out .aMap-picker-tab.aMap-picker-tab-layer,
   .aMap-picker-area .aMap-picker-tab.aMap-picker-tab-layer {
     position: absolute;
@@ -113,7 +113,7 @@
     right: 0;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    z-index: 999; }
+    z-index: 102; }
   .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-head,
   .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-head {
     height: 45px;
