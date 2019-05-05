@@ -45,7 +45,11 @@ $buttonPadding                  : 0 20px;//按钮内间距
 }
 
 
-.aMap-picker-area {padding:0; margin:0;position: relative;text-align: left;
+.aMap-picker-area {
+  padding:0;
+  //margin:0;
+  position: relative;
+  text-align: left;
   *,
   *:before,
   *:after {
