@@ -26,7 +26,7 @@ var MqPicker=function(setting){
                         //allValue,全部value
                         //产出name,最后一级名称
     };
-    Object.assign(this.param,setting);
+    $.extend(this.param,setting);
     //内部数据
     //转义
     this.domMaster=$(this.param.domMaster);
@@ -41,7 +41,7 @@ var MqPicker=function(setting){
     this.init();
 };
 
-Object.assign(MqPicker.prototype,{
+$.extend(MqPicker.prototype,{
     init:function(){
         var self=this;
         self.initData();
