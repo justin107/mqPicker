@@ -110,9 +110,8 @@
   .aMap-picker-area .aMap-picker-tab.aMap-picker-tab-layer {
     position: absolute;
     left: 50%;
-    right: 0;
     top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    transform: translate(-50%, -50%);
     z-index: 102;
     background-color: #fff; }
   .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-head,
