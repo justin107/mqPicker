@@ -25,6 +25,7 @@ var MqPicker=function(setting){
                         //allName,全部名称
                         //allValue,全部value
                         //产出name,最后一级名称
+
     };
     $.extend(this.param,setting);
     //内部数据
@@ -38,6 +39,8 @@ var MqPicker=function(setting){
     this.tabData=[];//储存临时数据
     this.rndNum=Math.random().toString(36).substr(2);//随机数
     this.tabHeadVal='0';
+    this.outName='';
+    this.outValue='';
     this.init();
 };
 
@@ -203,7 +206,6 @@ $.extend(MqPicker.prototype,{
                         self.domMaster.find('.input-area-item-'+index).nextAll().html('');
                         var level=$(this).parent().attr('level');
                         if(self.param.pickerClass==='pickerAreaPost' && level==="city"){
-                            console.log('省市区自定义')
                             self.param.loadAjax({name:labelName})
                                 .done(function(data){
                                     console.log("数据",data.data);
@@ -299,6 +301,7 @@ $.extend(MqPicker.prototype,{
         self.tabDom.on("click",'.aMap-btn-cancel',function () {
             self.tabDom.find(".tab-pane:last input[type='checkbox']")
                 .prop('checked',false).change().data({checked:false});
+            self.outClear();//重置输出
             lastData.name=[];
             lastData.value=[];
             self.domMaster.find('.input-area-item:last').html('');
@@ -310,9 +313,38 @@ $.extend(MqPicker.prototype,{
         self.tabDom.on("click",'.aMap-btn-submit',function () {
             //打印产出所有记录
             console.log('tabData',self.tabData);
+            //output:'value',//默认value,最后一级value
+            //allName,全部名称
+            //allValue,全部value
+            //产出name,最后一级名称
+
+            self.outClear();//重置输出
+            //重新查询获取
+            if(self.param.output==='value'){
+                if(self.param.lastIsMultiple){
+                    self.outValue = lastData.value.join(self.param.separator);
+                }else {
+                    self.outValue = lastData.value;
+                }
+            }else if(self.param.output==='name'){
+                if(self.param.lastIsMultiple){
+                    self.outName = lastData.name.join(self.param.separator);
+                }else {
+                    self.outName = lastData.name;
+                }
+            }
+
+
+
             self.tabDom.hide()
         });
 
+    },
+
+    outClear:function(){
+        var self=this;
+        self.outValue="";
+        self.outName="";
     },
 
     isShowButtons:function(){//是否显示按钮组
@@ -580,7 +612,7 @@ $.extend(MqPicker.prototype,{
 
         areaDom.find('.tab-pane-box').html(interHtml.join(''));
 
-        if(self.isLastDom && self.param.areaType==='checkbox'){
+        if(self.isLastDom && self.param.lastIsMultiple){
             $('.tab-pane:last input[type="checkbox"]').data({checked:false})
         }
 
@@ -603,7 +635,11 @@ $.extend(MqPicker.prototype,{
     },
 
     postAjax:function (callback){//接口自定义
-        console.log(111)
+        // console.log(111)
+    },
+    
+    getValue:function () {
+
     }
 });
 

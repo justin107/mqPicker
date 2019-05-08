@@ -53,7 +53,7 @@
     </code>
 </div>
 
-
+<p class="demo3"><span class="button">点击获取值</span>：<span class="txt"></span></p>
 
 <h3>省市区(弹窗居中显示)</h3>
 <div id="demo4"></div>
@@ -63,6 +63,19 @@
         layPosition:'layer',
     </code>
 </div>
+<p class="demo4"><span class="button">点击获取值</span>：<span class="txt"></span></p>
+
+
+<h3>省市-自定义区接口</h3>
+<div id="demo10"></div>
+
+<div>
+    <code>
+        pickerClass:'pickerAreaPost',
+        loadAjax:test
+    </code>
+</div>
+<p class="demo10"><span class="button">点击获取值</span>：<span class="txt"></span></p>
 
 </body>
 
@@ -91,41 +104,42 @@
             subdistrict: 1,//  显示下级行政区级数，1表示返回下一级行政区
         });
 
-        var demo1=new MqPicker({
+        var demoOne=new MqPicker({
             domMaster:'#demo1',
             layPosition:'float',
             lastIsMultiple:false,
         });
 
-        var demo2=new MqPicker({
+        var demoTwo=new MqPicker({
             domMaster:'#demo2',
             layPosition:'float',
             lastIsMultiple:true,
         });
 
-        var demo3=new MqPicker({
+        var demoThree=new MqPicker({
             domMaster:'#demo3',
             layPosition:'float',
             placeholderText:'你试试换个提示',
-            lastIsMultiple:true,
+            lastIsMultiple:false,
         });
 
-        var demo4=new MqPicker({
+        var demoFour=new MqPicker({
             domMaster:'#demo4',
             layPosition:'layer',
             lastIsMultiple:true,
+            output:'name'
         });
 
-        // var demo10=new MqPicker({
-        //     domMaster:'#demo4',
-        //     pickerLevel:{
-        //         name:['省','市','自定义'],
-        //     },
-        //     layPosition:'layer',
-        //     lastIsMultiple:true,
-        //     pickerClass:'pickerAreaPost',
-        //     loadAjax:test
-        // });
+        var demoTen=new MqPicker({
+            domMaster:'#demo10',
+            pickerLevel:{
+                name:['省','市','自定义'],
+            },
+            layPosition:'layer',
+            lastIsMultiple:true,
+            pickerClass:'pickerAreaPost',
+            loadAjax:test
+        });
 
         var url="https://www.easy-mock.com/mock/59a9210de0dc66334198c0cd/data";
         function test(data){
@@ -134,6 +148,19 @@
                 data:data,
             })
         }
+
+        $(".demo10 .button").on("click",function () {
+            $(".demo10 .txt").html(demoTen.outValue)
+        });
+
+        $(".demo4 .button").on("click",function () {
+            $(".demo4 .txt").html(demoFour.outName)
+        });
+
+        $(".demo3 .button").on("click",function () {
+            $(".demo3 .txt").html(demoThree.outValue)
+        });
+
     };
 </script>
 </html>
