@@ -35,6 +35,11 @@
     </code>
 </div>
 
+<p class="demo1">
+    <span class="button">点击清除</span>
+    <span class="console">console</span>
+</p>
+
 <h3>普通省市区(多选)</h3>
 <div id="demo2"></div>
 
@@ -98,13 +103,13 @@
     }
 
     loadAmapApi('7a83c014e37800a4ecb7193e306b67ba');
-
+    var demoOne;
     window.apiLoad=function (){//异步加载
         window.districtSearch = new AMap.DistrictSearch({
             subdistrict: 1,//  显示下级行政区级数，1表示返回下一级行政区
         });
 
-        var demoOne=new MqPicker({
+        demoOne=new MqPicker({
             domMaster:'#demo1',
             layPosition:'float',
             lastIsMultiple:false,
@@ -151,6 +156,14 @@
 
         $(".demo10 .button").on("click",function () {
             $(".demo10 .txt").html(demoTen.outValue)
+        });
+
+        $(".demo1 .button").on("click",function () {
+            demoOne.pickerReset()
+        });
+
+        $(".demo1 .console").on("click",function () {
+            console.log(demoOne.tabData)
         });
 
         $(".demo4 .button").on("click",function () {

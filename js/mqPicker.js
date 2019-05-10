@@ -222,13 +222,13 @@ $.extend(MqPicker.prototype,{
                         self.tabData[m].value='';
                     }
                     if(self.param.lastIsMultiple){
-                        lastData.name=[];
-                        lastData.value=[];
+                        self.tabData[index].name=[];
+                        self.tabData[index].value=[];
                     }
 
                 }else{//是最后一级
-                    lastData.name=labelName;
-                    lastData.value=labelVal;
+                    self.tabData[index].name=labelName;
+                    self.tabData[index].value=labelVal;
                 }
                 self.isShowButtons();
                 self.isPlaceholder();
@@ -354,6 +354,7 @@ $.extend(MqPicker.prototype,{
             cancelAll=self.tabDom.find('.aMap-btn-cancel'),
             lastData=self.tabData[self.levelNum-1];
         self.isLastDom=self.levelNum===(self.tabHeadVal*1+1)?true:false;//判断是否是最后一级
+        console.log(self.isLastDom)
         if(self.isLastDom){
             //单、多选逻辑判断是否有全选按钮
             if(self.param.lastIsMultiple){//多选
@@ -368,6 +369,8 @@ $.extend(MqPicker.prototype,{
             }else {//单选
                 chooseAll.hide()
                 cancelAll.hide();
+
+                console.log(111)
                 lastData.name!=''?buttons.show():buttons.hide();
             }
         }else {
@@ -626,8 +629,8 @@ $.extend(MqPicker.prototype,{
         self.tabDom.find('.tab-head:first input').prop('checked',true).change();
         self.tabDom.find('.tab-pane:first').show().siblings().find('.tab-pane-box').html('<p class="no-data">暂无数据</p>');
 
-        self.tabData=[];//储存临时数据
         self.initData();
+        //self.initEvent();
 
         self.domMaster.find('.aMap-picker-tab-buttons').hide();
         self.domMaster.find('.input-area-item').html("");
