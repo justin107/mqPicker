@@ -221,9 +221,9 @@ $.extend(MqPicker.prototype,{
                         self.tabData[m].name='';
                         self.tabData[m].value='';
                     }
-                    if(self.param.lastIsMultiple){
-                        self.tabData[index].name=[];
-                        self.tabData[index].value=[];
+                    if(self.param.lastIsMultiple && lastIndex+1===levelNum){
+                        self.tabData[nextIndex].name=[];
+                        self.tabData[nextIndex].value=[];
                     }
 
                 }else{//是最后一级
@@ -243,22 +243,24 @@ $.extend(MqPicker.prototype,{
                 checkedVal=_that.val();
             if(!checked){
                 _that.data().checked=true;
-                lastData.name.push(checkedName);
-                lastData.value.push(checkedVal)
+                // self.tabData[lastIndex].value=[];
+                // self.tabData[lastIndex].name=[];
+                self.tabData[lastIndex].name.push(checkedName);
+                self.tabData[lastIndex].value.push(checkedVal)
             }else {//移除
                 _that.data().checked=false;
-                arrayName=lastData.name.filter(function (item) {
+                arrayName=self.tabData[self.levelNum-1].name.filter(function (item) {
                     return item != checkedName
                 });
-                arrayVal=lastData.value.filter(function (item) {
+                arrayVal=self.tabData[self.levelNum-1].value.filter(function (item) {
                     return item != checkedVal
                 });
-                lastData.name=arrayName;
-                lastData.value=arrayVal;
+                self.tabData[self.levelNum-1].name=arrayName;
+                self.tabData[self.levelNum-1].value=arrayVal;
             }
             var lastInputItem=self.domMaster.find('.input-area-item:last');
-            if(lastData.name.length!==0){//区数量
-                var arrayAreaStr=lastData.name.join(self.param.areaSeparator);
+            if(self.tabData[self.levelNum-1].name.length!==0){//区数量
+                var arrayAreaStr=self.tabData[self.levelNum-1].name.join(self.param.areaSeparator);
 
                 if(lastIndex===0){
                     lastInputItem.html('<em title='+arrayAreaStr+'>'+arrayAreaStr+'</em>')
@@ -277,22 +279,22 @@ $.extend(MqPicker.prototype,{
         self.tabDom.on("click",'.aMap-btn-choose-all',function () {
             self.tabDom.find(".tab-pane:last input[type='checkbox']")
                 .prop('checked',true).change().data({checked:true});
-                lastData.value=[];
-                lastData.name=[];
+            self.tabData[lastIndex].value=[];
+            self.tabData[lastIndex].name=[];
 
             var lastDom=self.tabDom.find('div.tab-pane:last');
 
             lastDom.find("input[type='checkbox']").each(function(){
                 if($(this).is(':checked')){
-                    lastData.value.push($(this).val());
-                    lastData.name.push($(this).next().text())
+                    self.tabData[lastIndex].value.push($(this).val());
+                    self.tabData[lastIndex].name.push($(this).next().text())
                 }
             });
             var lastInputItem=self.domMaster.find('.input-area-item:last');
             if(lastIndex!==0){//不是唯一
-                lastInputItem.html(self.param.separator+lastData.name.join(self.param.areaSeparator));
+                lastInputItem.html(self.param.separator+self.tabData[lastIndex].name.join(self.param.areaSeparator));
             }else {//唯一
-                lastInputItem.html(lastData.name.join(self.param.areaSeparator));
+                lastInputItem.html(self.tabData[lastIndex].name.join(self.param.areaSeparator));
             }
             $(this).hide().siblings('.aMap-btn-cancel').show();//和取消按钮互斥
         });
@@ -302,8 +304,8 @@ $.extend(MqPicker.prototype,{
             self.tabDom.find(".tab-pane:last input[type='checkbox']")
                 .prop('checked',false).change().data({checked:false});
             self.outClear();//重置输出
-            lastData.name=[];
-            lastData.value=[];
+            self.tabData[lastIndex].name=[];
+            self.tabData[lastIndex].value=[];
             self.domMaster.find('.input-area-item:last').html('');
             $(this).hide().siblings('.aMap-btn-choose-all').show();//和全选互斥
             self.isPlaceholder();
@@ -333,9 +335,6 @@ $.extend(MqPicker.prototype,{
                     self.outName = lastData.name;
                 }
             }
-
-
-
             self.tabDom.hide()
         });
 
@@ -403,7 +402,6 @@ $.extend(MqPicker.prototype,{
                     indexData.data=districtListNext;
                     self.updateProvince(districtListNext)
                 }else {//行政其它
-
                     if(indexEdit){
                         self.updateArea(districtListNext,indexEdit,editArray[index])
                     }else{
@@ -412,7 +410,14 @@ $.extend(MqPicker.prototype,{
 
                 }
             }else{
-                alert('返回错误!')
+                console.log(status,result);
+                if(self.param.pickerErrors){
+                    self.param.pickerErrors();
+                }else {
+                    alert('返回错误!')
+                }
+                self.pickerReset();//重置
+
             }
         })
 

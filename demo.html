@@ -50,6 +50,12 @@
     </code>
 </div>
 
+<p class="demo2">
+    <span class="button">点击清除</span>
+    <span class="edit">点击回写</span>
+    <span class="console">console</span>
+</p>
+
 <h3>普通省市区(自定义提示)</h3>
 <div id="demo3"></div>
 
@@ -114,6 +120,7 @@
             domMaster:'#demo1',
             layPosition:'float',
             lastIsMultiple:false,
+            pickerErrors:searchError
         });
 
         var demoTwo=new MqPicker({
@@ -155,6 +162,12 @@
             })
         }
 
+
+        function searchError(){
+            console.log(1111)
+            // layer.msg('<p class="icon-box"><i class="iconfont icon-gou"></i></p>修改站点完成', {time: 2000, icon:1,shade:0.5});
+        }
+
         $(".demo10 .button").on("click",function () {
             $(".demo10 .txt").html(demoTen.outValue)
         });
@@ -166,9 +179,13 @@
         $(".demo1 .console").on("click",function () {
             console.log(demoOne.tabData)
         });
+        $(".demo2 .console").on("click",function () {
+            console.log(demoTwo.tabData)
+        });
 
         $(".demo1 .edit").on("click",function () {
-            demoOne.pickerRewrite(["420000","420500","420528"])
+            // demoOne.pickerRewrite(["420000","420500","420528"])
+            demoOne.pickerRewrite(["420000","429000","429004"])
         });
 
         $(".demo4 .button").on("click",function () {
