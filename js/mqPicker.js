@@ -319,7 +319,6 @@ $.extend(MqPicker.prototype,{
             //allName,全部名称
             //allValue,全部value
             //产出name,最后一级名称
-
             self.outClear();//重置输出
             //重新查询获取
             if(self.param.output==='value'){
@@ -417,7 +416,6 @@ $.extend(MqPicker.prototype,{
                     alert('返回错误!')
                 }
                 self.pickerReset();//重置
-
             }
         })
 
@@ -432,81 +430,81 @@ $.extend(MqPicker.prototype,{
         sortChinese(provinceData,'name');//排序
         //处理直辖市和简称问题
         provinceData.forEach(function (item,index) {
-            if(item.adcode =="450000"){
+            if(item.adcode ==="450000"){
                 item.name='广西';
                 item.letter='G'
-            }else if(item.adcode =="650000"){
+            }else if(item.adcode ==="650000"){
                 item.name='新疆';
                 item.letter='X'
-            }else if(item.adcode =="540000"){
+            }else if(item.adcode ==="540000"){
                 item.name='西藏';
                 item.letter='X'
-            }else if(item.adcode =="640000"){
+            }else if(item.adcode ==="640000"){
                 item.name='宁夏';
                 item.letter='N'
-            }else if(item.adcode =="810000"){
+            }else if(item.adcode ==="810000"){
                 item.name='香港';
                 item.letter='X'
-            }else if(item.adcode =="150000"){
+            }else if(item.adcode ==="150000"){
                 item.name='内蒙古';
                 item.letter='N'
-            }else if(item.adcode =="820000"){
+            }else if(item.adcode ==="820000"){
                 item.name='澳门';
                 item.letter='A'
-            }else if(item.adcode =="230000"){
+            }else if(item.adcode ==="230000"){
                 item.name='黑龙江';
                 item.letter='H'
-            }else if(item.adcode =="340000"){//安徽
+            }else if(item.adcode ==="340000"){//安徽
                 item.letter='A'
-            }else if(item.adcode =="110000"){//北京
+            }else if(item.adcode ==="110000"){//北京
                 item.letter='B'
-            }else if(item.adcode =="500000"){//重庆
+            }else if(item.adcode ==="500000"){//重庆
                 item.letter='C'
-            }else if(item.adcode =="350000"){//福建
+            }else if(item.adcode ==="350000"){//福建
                 item.letter='F'
-            }else if(item.adcode =="620000"){//甘肃
+            }else if(item.adcode ==="620000"){//甘肃
                 item.letter='G'
-            }else if(item.adcode =="440000"){//广东
+            }else if(item.adcode ==="440000"){//广东
                 item.letter='G'
-            }else if(item.adcode =="520000"){//贵州
+            }else if(item.adcode ==="520000"){//贵州
                 item.letter='G'
-            }else if(item.adcode =="460000"){//海南
+            }else if(item.adcode ==="460000"){//海南
                 item.letter='H'
-            }else if(item.adcode =="130000"){//河北
+            }else if(item.adcode ==="130000"){//河北
                 item.letter='H'
-            }else if(item.adcode =="410000"){//河南
+            }else if(item.adcode ==="410000"){//河南
                 item.letter='H'
-            }else if(item.adcode =="420000"){//湖北
+            }else if(item.adcode ==="420000"){//湖北
                 item.letter='H'
-            }else if(item.adcode =="430000"){//湖南
+            }else if(item.adcode ==="430000"){//湖南
                 item.letter='H'
-            }else if(item.adcode =="220000"){//吉林
+            }else if(item.adcode ==="220000"){//吉林
                 item.letter='J'
-            }else if(item.adcode =="320000"){//江苏
+            }else if(item.adcode ==="320000"){//江苏
                 item.letter='J'
-            }else if(item.adcode =="360000"){//江西
+            }else if(item.adcode ==="360000"){//江西
                 item.letter='J'
-            }else if(item.adcode =="210000"){//辽宁
+            }else if(item.adcode ==="210000"){//辽宁
                 item.letter='L'
-            }else if(item.adcode =="630000"){//青海
+            }else if(item.adcode ==="630000"){//青海
                 item.letter='Q'
-            }else if(item.adcode =="370000"){//山东
+            }else if(item.adcode ==="370000"){//山东
                 item.letter='S'
-            }else if(item.adcode =="140000"){//山西
+            }else if(item.adcode ==="140000"){//山西
                 item.letter='S'
-            }else if(item.adcode =="610000"){//陕西
+            }else if(item.adcode ==="610000"){//陕西
                 item.letter='S'
-            }else if(item.adcode =="310000"){//上海
+            }else if(item.adcode ==="310000"){//上海
                 item.letter='S'
-            }else if(item.adcode =="510000"){//四川
+            }else if(item.adcode ==="510000"){//四川
                 item.letter='S'
-            }else if(item.adcode =="710000"){//台湾
+            }else if(item.adcode ==="710000"){//台湾
                 item.letter='T'
-            }else if(item.adcode =="120000"){//天津
+            }else if(item.adcode ==="120000"){//天津
                 item.letter='T'
-            }else if(item.adcode =="530000"){//云南
+            }else if(item.adcode ==="530000"){//云南
                 item.letter='Y'
-            }else if(item.adcode =="330000"){//浙江
+            }else if(item.adcode ==="330000"){//浙江
                 item.letter='Z'
             }
 
@@ -633,22 +631,28 @@ $.extend(MqPicker.prototype,{
 
         //回写数据，先处理省市区单选逻辑应急
         if(indexEdit){
-            console.log(indexEdit,val)
-            console.log(self.tabDom.find("[name='tabLabel-area-"+index+"-"+self.rndNum+"'][value='"+val+"']"))
-            self.tabDom.find("[name='tabLabel-area-"+index+"-"+self.rndNum+"'][value='"+val+"']").prop('checked',true);
+            if(self.param.lastIsMultiple && self.isLastDom){
+                let textArray=[];
+                for(var i=0;i<val.length;i++){
+                    let checkeds=self.tabDom.find("[name='tabLabel-area-"+index+"-"+self.rndNum+"'][value='"+val[i]+"']")
+                    checkeds.prop('checked',true).data({checked:true});
+                    textArray.push(checkeds.siblings().text());
+                }
+                self.domMaster.find('.input-area-item').eq(index).html(self.param.separator+textArray.join(self.param.areaSeparator));
+                self.tabData[index].value=val;
+                self.tabData[index].name=textArray;
 
-            var text=self.tabDom.find("[name='tabLabel-area-"+index+"-"+self.rndNum+"'][value='"+val+"']").siblings().text();
-            self.domMaster.find('.input-area-item').eq(index).html(self.param.separator+text);
-
-            self.tabData[index].value=val;
-            self.tabData[index].name=text;
-
+            }else {
+                self.tabDom.find("[name='tabLabel-area-"+index+"-"+self.rndNum+"'][value='"+val+"']").prop('checked',true);
+                var text=self.tabDom.find("[name='tabLabel-area-"+index+"-"+self.rndNum+"'][value='"+val+"']").siblings().text();
+                self.domMaster.find('.input-area-item').eq(index).html(self.param.separator+text);
+                self.tabData[index].value=val;
+                self.tabData[index].name=text;
+            }
         }
 
     },
-
-
-    //重置,可能有点问题，忘记初始数据了
+    //重置
     pickerReset:function(){
         var self=this;
         self.tabDom.find('input').prop('checked',false);
@@ -664,7 +668,7 @@ $.extend(MqPicker.prototype,{
 
     pickerRewrite(array){
         var self=this;
-        //暂定是省市区单选的
+        //暂定是省市区单、多选的
         console.log(array);
         self.domMaster.find('.input-placeholder').hide();
         //默认省已加载，所以排除0,直接赋值省

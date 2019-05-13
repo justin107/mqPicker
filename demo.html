@@ -13,6 +13,9 @@
         body > div{
             width: 500px; margin: 0 auto;
         }
+
+        p > span {cursor: pointer;border: 1px solid #ccc;margin: 0 10px;padding: 3px 10px;}
+
     </style>
 </head>
 
@@ -164,12 +167,16 @@
 
 
         function searchError(){
-            console.log(1111)
-            // layer.msg('<p class="icon-box"><i class="iconfont icon-gou"></i></p>修改站点完成', {time: 2000, icon:1,shade:0.5});
+            alert("错误提示方法")
         }
 
         $(".demo10 .button").on("click",function () {
             $(".demo10 .txt").html(demoTen.outValue)
+        });
+
+        $(".demo1 .edit").on("click",function () {
+            // demoOne.pickerRewrite(["420000","420500","420528"])
+            demoOne.pickerRewrite(["420000","429000","429004"])//测试回写
         });
 
         $(".demo1 .button").on("click",function () {
@@ -179,22 +186,28 @@
         $(".demo1 .console").on("click",function () {
             console.log(demoOne.tabData)
         });
+
+        $(".demo2 .button").on("click",function () {
+            demoTwo.pickerReset()
+        });
+
         $(".demo2 .console").on("click",function () {
             console.log(demoTwo.tabData)
         });
 
-        $(".demo1 .edit").on("click",function () {
-            // demoOne.pickerRewrite(["420000","420500","420528"])
-            demoOne.pickerRewrite(["420000","429000","429004"])
+        $(".demo2 .edit").on("click",function () {
+            demoTwo.pickerRewrite(["420000","420500",["420504","420583"]])//测试回写
+        });
+
+        $(".demo3 .button").on("click",function () {
+            $(".demo3 .txt").html(demoThree.outValue)
         });
 
         $(".demo4 .button").on("click",function () {
             $(".demo4 .txt").html(demoFour.outName)
         });
 
-        $(".demo3 .button").on("click",function () {
-            $(".demo3 .txt").html(demoThree.outValue)
-        });
+
 
     };
 </script>
