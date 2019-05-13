@@ -37,6 +37,7 @@
 
 <p class="demo1">
     <span class="button">点击清除</span>
+    <span class="edit">点击回写</span>
     <span class="console">console</span>
 </p>
 
@@ -164,6 +165,10 @@
 
         $(".demo1 .console").on("click",function () {
             console.log(demoOne.tabData)
+        });
+
+        $(".demo1 .edit").on("click",function () {
+            demoOne.pickerRewrite(["420000","420500","420528"])
         });
 
         $(".demo4 .button").on("click",function () {

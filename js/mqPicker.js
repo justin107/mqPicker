@@ -354,7 +354,6 @@ $.extend(MqPicker.prototype,{
             cancelAll=self.tabDom.find('.aMap-btn-cancel'),
             lastData=self.tabData[self.levelNum-1];
         self.isLastDom=self.levelNum===(self.tabHeadVal*1+1)?true:false;//判断是否是最后一级
-        console.log(self.isLastDom)
         if(self.isLastDom){
             //单、多选逻辑判断是否有全选按钮
             if(self.param.lastIsMultiple){//多选
@@ -367,10 +366,8 @@ $.extend(MqPicker.prototype,{
                     chooseAll.show();
                 }
             }else {//单选
-                chooseAll.hide()
+                chooseAll.hide();
                 cancelAll.hide();
-
-                console.log(111)
                 lastData.name!=''?buttons.show():buttons.hide();
             }
         }else {
@@ -389,23 +386,30 @@ $.extend(MqPicker.prototype,{
         }
     },
 
-    pickerSearch:function (name){
+    pickerSearch:function (name,indexEdit,editArray){
         //兼顾自定义接口，所以数据都存在tabData里
-        var self=this,
-            districtListNext,
-            index=self.tabHeadVal*1,
+        var self=this;
+
+        var districtListNext,
+            index=indexEdit*1 || self.tabHeadVal*1,
             indexData=self.tabData[index],
             val=name || indexData.value;
         window.districtSearch.search(val, function(status, result) {
             if(status=='complete' && result.districtList.length===1){
                 districtListNext=result.districtList[0].districtList;
                 var thisLevel=result.districtList[0].level;//上一级别等级
-
+                // console.log(val,districtListNext);
                 if(thisLevel=='country' && self.onceLoad){//页面载入第一次使用，行政省数据,
                     indexData.data=districtListNext;
                     self.updateProvince(districtListNext)
                 }else {//行政其它
-                    self.updateArea(districtListNext)//通用方法
+
+                    if(indexEdit){
+                        self.updateArea(districtListNext,indexEdit,editArray[index])
+                    }else{
+                        self.updateArea(districtListNext) //通用方法
+                    }
+
                 }
             }else{
                 alert('返回错误!')
@@ -566,10 +570,11 @@ $.extend(MqPicker.prototype,{
 
 
     //通用方法渲染TABBOX
-    updateArea:function(data){
+    updateArea:function(data,indexEdit,val){
         var self=this;
+
         var areaData=data,
-            index=self.tabHeadVal*1,
+            index=indexEdit*1 || self.tabHeadVal*1,
             indexData=self.tabData[index];
         areaData.sort(function (a, b) {//按名称长短
             return a.name.length-b.name.length
@@ -583,33 +588,34 @@ $.extend(MqPicker.prototype,{
         }
 
         indexData.data=areaData;
-        self.renderArea(areaData);
+        self.renderArea(areaData,indexEdit,val);
         console.log(areaData)
     },
 
-    renderArea:function(data){
+    renderArea:function(data,indexEdit,val){
         var self=this;
-        var areaDom=self.tabDom.find('.tab-pane-'+self.tabHeadVal);
-        self.domMaster.find('.tab-head-'+self.tabHeadVal+' input')
+        var index=indexEdit*1 || self.tabHeadVal*1;
+        var areaDom=self.tabDom.find('.tab-pane-'+index);
+        self.domMaster.find('.tab-head-'+index+' input')
             .prop('checked',true).change();//tab head
         areaDom.show().siblings().hide();
         var interHtml=[];
-        self.isLastDom=self.levelNum===(self.tabHeadVal*1+1)?true:false;//判断是否是最后一级
+        self.isLastDom=self.levelNum===(index+1)?true:false;//判断是否是最后一级
         //区分是否最后一个
         if(self.isLastDom){
             //区分单选多选
             if(self.param.areaType==='radio'){
                 for(var i=0;i<data.length;i++){
-                    interHtml.push('<label><input name="tabLabel-area-'+self.tabHeadVal+'-'+self.rndNum+'" type="radio" value='+data[i].adcode+'><span>'+data[i].name+'</span></label>');
+                    interHtml.push('<label><input name="tabLabel-area-'+index+'-'+self.rndNum+'" type="radio" value='+data[i].adcode+'><span>'+data[i].name+'</span></label>');
                 }
             }else {
                 for(var i=0;i<data.length;i++){
-                    interHtml.push('<label><input name="tabLabel-area-'+self.tabHeadVal+'-'+self.rndNum+'" type="checkbox" value='+data[i].adcode+'><span>'+data[i].name+'</span></label>');
+                    interHtml.push('<label><input name="tabLabel-area-'+index+'-'+self.rndNum+'" type="checkbox" value='+data[i].adcode+'><span>'+data[i].name+'</span></label>');
                 }
             }
         }else {
             for(var i=0;i<data.length;i++){
-                interHtml.push('<label level='+data[i].level+'><input name="tabLabel-area-'+self.tabHeadVal+'-'+self.rndNum+'" type="radio" value='+data[i].adcode+'><span>'+data[i].name+'</span></label>');
+                interHtml.push('<label level='+data[i].level+'><input name="tabLabel-area-'+index+'-'+self.rndNum+'" type="radio" value='+data[i].adcode+'><span>'+data[i].name+'</span></label>');
             }
         }
 
@@ -617,6 +623,21 @@ $.extend(MqPicker.prototype,{
 
         if(self.isLastDom && self.param.lastIsMultiple){
             $('.tab-pane:last input[type="checkbox"]').data({checked:false})
+        }
+
+
+        //回写数据，先处理省市区单选逻辑应急
+        if(indexEdit){
+            console.log(indexEdit,val)
+            console.log(self.tabDom.find("[name='tabLabel-area-"+index+"-"+self.rndNum+"'][value='"+val+"']"))
+            self.tabDom.find("[name='tabLabel-area-"+index+"-"+self.rndNum+"'][value='"+val+"']").prop('checked',true);
+
+            var text=self.tabDom.find("[name='tabLabel-area-"+index+"-"+self.rndNum+"'][value='"+val+"']").siblings().text();
+            self.domMaster.find('.input-area-item').eq(index).html(self.param.separator+text);
+
+            self.tabData[index].value=val;
+            self.tabData[index].name=text;
+
         }
 
     },
@@ -630,15 +651,30 @@ $.extend(MqPicker.prototype,{
         self.tabDom.find('.tab-pane:first').show().siblings().find('.tab-pane-box').html('<p class="no-data">暂无数据</p>');
 
         self.initData();
-        //self.initEvent();
 
         self.domMaster.find('.aMap-picker-tab-buttons').hide();
         self.domMaster.find('.input-area-item').html("");
         self.domMaster.find('.input-placeholder').show();
     },
 
+    pickerRewrite(array){
+        var self=this;
+        //暂定是省市区单选的
+        console.log(array);
+        self.domMaster.find('.input-placeholder').hide();
+        //默认省已加载，所以排除0,直接赋值省
+        self.tabDom.find("[name='tabLabel-area-0-"+self.rndNum+"'][value='"+array[0]+"']").prop('checked',true);
+        var text=self.tabDom.find("[name='tabLabel-area-0-"+self.rndNum+"'][value='"+array[0]+"']").siblings().text();
+        self.domMaster.find('.input-area-item').eq(0).html(text);
+        self.tabData[0].value=array[0];
+        self.tabData[0].name=text;
+        //查询市
+        self.pickerSearch(array[0],1,array);
+        self.pickerSearch(array[1],2,array);
+
+    },
+
     postAjax:function (callback){//接口自定义
-        // console.log(111)
     },
     
     getValue:function () {
