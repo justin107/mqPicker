@@ -1,6 +1,6 @@
-**高德省市区选择,beta 2019**
+**高德省市区选择,beta 2019 第三版**
 
-code by justin
+code by justin 
 
 **业务场景**
 
@@ -23,7 +23,7 @@ https://lbs.amap.com/api/javascript-api/summary
 
 功能点
 
-1、业务产出districtCode
+1、业务产出code
 
 2、支持多实例
 
@@ -41,6 +41,10 @@ https://lbs.amap.com/api/javascript-api/summary
 
 9、支持级别调整
 
-Next step plan
+10、支持省市区单、多选回显
 
-1、回写功能
+Next
+
+1、支持更多回显
+
+2、简化代码逻辑结构
