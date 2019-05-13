@@ -668,6 +668,7 @@ $.extend(MqPicker.prototype,{
 
     pickerRewrite(array){
         var self=this;
+        self.pickerReset()//重置下先
         //暂定是省市区单、多选的
         console.log(array);
         self.domMaster.find('.input-placeholder').hide();
