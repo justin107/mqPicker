@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>mqPicker demo</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://libs.cdnjs.net/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
     <style type="text/css">
         body {text-align: center}
@@ -81,6 +81,48 @@
 <p class="demo4"><span class="button">点击获取值</span>：<span class="txt"></span></p>
 
 
+<h3>自定义区接口(多选)</h3>
+<div id="demo5"></div>
+
+<div>
+    <code>
+        pickerLevel:{
+            name:['自定义'],
+        },
+        pickerClass:'pickerPost',
+        loadAjax:test,
+        lastIsMultiple:true,
+    </code>
+</div>
+
+<p class="demo5">
+    <span class="button">点击清除</span>
+    <span class="edit">点击回写</span>
+    <span class="console">console</span>
+</p>
+
+
+<h3>自定义区接口(单选)</h3>
+<div id="demo6"></div>
+
+<div>
+    <code>
+        pickerLevel:{
+        name:['自定义'],
+        },
+        pickerClass:'pickerPost',
+        loadAjax:test，
+        lastIsMultiple:false,
+    </code>
+</div>
+
+<p class="demo6">
+    <span class="button">点击清除</span>
+    <span class="edit">点击回写</span>
+    <span class="console">console</span>
+</p>
+
+
 <h3>省市-自定义区接口</h3>
 <div id="demo10"></div>
 
@@ -151,6 +193,28 @@
             output:'name'
         });
 
+        var demoFive=new MqPicker({
+            domMaster:'#demo5',
+            layPosition:'layer',
+            lastIsMultiple:true,
+            pickerLevel:{
+                name:['自定义'],
+            },
+            pickerClass:'pickerPost',
+            loadAjax:test
+        });
+
+        var demoFix=new MqPicker({
+            domMaster:'#demo6',
+            layPosition:'layer',
+            lastIsMultiple:false,
+            pickerLevel:{
+                name:['自定义'],
+            },
+            pickerClass:'pickerPost',
+            loadAjax:test
+        });
+
         var demoTen=new MqPicker({
             domMaster:'#demo10',
             pickerLevel:{
@@ -176,7 +240,7 @@
         }
 
         $(".demo10 .button").on("click",function () {
-            $(".demo10 .txt").html(demoTen.outValue)
+            demoTen.pickerReset()
         });
 
         $(".demo10 .edit").on("click",function () {
@@ -218,6 +282,30 @@
 
         $(".demo4 .button").on("click",function () {
             $(".demo4 .txt").html(demoFour.outName)
+        });
+
+        $(".demo5 .edit").on("click",function () {
+            demoFive.pickerRewrite(["12","123456","12345678"])
+        });
+
+        $(".demo5 .button").on("click",function () {
+            demoFive.pickerReset()
+        });
+
+        $(".demo5 .console").on("click",function () {
+            console.log(demoFive.tabData)
+        });
+
+        $(".demo6 .edit").on("click",function () {
+            demoFix.pickerRewrite("12")
+        });
+
+        $(".demo6 .button").on("click",function () {
+            demoFix.pickerReset()
+        });
+
+        $(".demo6 .console").on("click",function () {
+            console.log(demoFix.tabData)
         });
 
 

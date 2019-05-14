@@ -18,7 +18,6 @@ var MqPicker=function(setting){
         pickerLevel:{
             name:['省','市','区'],
         },
-        // loadAjax:this.postAjax,
         separator:'，',//省市间隔符号
         areaSeparator:'、',//区字符间隔,
         output:'value',//默认value,最后一级value
@@ -385,7 +384,6 @@ $.extend(MqPicker.prototype,{
     pickerSearch:function (name,indexEdit,editArray){
         //兼顾自定义接口，所以数据都存在tabData里
         var self=this;
-
         var districtListNext,
             index=indexEdit*1 || self.tabHeadVal*1,
             indexData=self.tabData[index],
@@ -636,14 +634,26 @@ $.extend(MqPicker.prototype,{
                     checkeds.prop('checked',true).data({checked:true});
                     textArray.push(checkeds.siblings().text());
                 }
-                self.domMaster.find('.input-area-item').eq(index).html(self.param.separator+textArray.join(self.param.areaSeparator));
+
+                if(index){
+                    self.domMaster.find('.input-area-item').eq(index).html(self.param.separator+textArray.join(self.param.areaSeparator));
+                }else {
+                    self.domMaster.find('.input-area-item').eq(index).html(textArray.join(self.param.areaSeparator));
+                }
                 self.tabData[index].value=val;
                 self.tabData[index].name=textArray;
 
             }else {
                 self.tabDom.find("[name='tabLabel-area-"+index+"-"+self.rndNum+"'][value='"+val+"']").prop('checked',true);
                 var text=self.tabDom.find("[name='tabLabel-area-"+index+"-"+self.rndNum+"'][value='"+val+"']").siblings().text();
-                self.domMaster.find('.input-area-item').eq(index).html(self.param.separator+text);
+
+
+                if(index){
+                    self.domMaster.find('.input-area-item').eq(index).html(self.param.separator+text);
+                }else {
+                    self.domMaster.find('.input-area-item').eq(index).html(text);
+                }
+
                 self.tabData[index].value=val;
                 self.tabData[index].name=text;
             }
@@ -669,28 +679,35 @@ $.extend(MqPicker.prototype,{
         self.pickerReset()//重置下先
         //暂定是省市区单、多选的
         console.log(array);
-        self.domMaster.find('.input-placeholder').hide();
-        //默认省已加载，所以排除0,直接赋值省
-        self.tabDom.find("[name='tabLabel-area-0-"+self.rndNum+"'][value='"+array[0]+"']").prop('checked',true);
-        var text=self.tabDom.find("[name='tabLabel-area-0-"+self.rndNum+"'][value='"+array[0]+"']").siblings().text();
-        self.domMaster.find('.input-area-item').eq(0).html(text);
-        self.tabData[0].value=array[0];
-        self.tabData[0].name=text;
-        //查询市
-        self.pickerSearch(array[0],1,array);
-
-        //自定义区
-        if(self.param.pickerClass==='pickerPost' || self.param.pickerClass==='pickerAreaPost'){
-            self.param.loadAjax({name:array[1]})
+        if(self.param.pickerClass==='pickerPost'){//单接口自定义
+            self.domMaster.find('.input-placeholder').hide();
+            self.param.loadAjax({name:array})
                 .done(function(data){
                     console.log("数据",data.data);
-                    self.updateArea(data.data,2,array[2])
+                    self.updateArea(data.data,"0",array)
                 });
-        }else {//查询区
-            self.pickerSearch(array[1],2,array);
+        }else {
+            self.domMaster.find('.input-placeholder').hide();
+            //默认省已加载，所以排除0,直接赋值省
+            self.tabDom.find("[name='tabLabel-area-0-"+self.rndNum+"'][value='"+array[0]+"']").prop('checked',true);
+            var text=self.tabDom.find("[name='tabLabel-area-0-"+self.rndNum+"'][value='"+array[0]+"']").siblings().text();
+            self.domMaster.find('.input-area-item').eq(0).html(text);
+            self.tabData[0].value=array[0];
+            self.tabData[0].name=text;
+            //查询市
+            self.pickerSearch(array[0],1,array);
+
+            //自定义区
+            if(self.param.pickerClass==='pickerAreaPost'){
+                self.param.loadAjax({name:array[1]})
+                    .done(function(data){
+                        console.log("数据",data.data);
+                        self.updateArea(data.data,2,array[2])
+                    });
+            }else {//查询区
+                self.pickerSearch(array[1],2,array);
+            }
         }
-
-
     },
 
     postAjax:function (callback){//接口自定义
