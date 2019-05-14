@@ -165,9 +165,6 @@ $.extend(MqPicker.prototype,{
 
         self.domMaster.on('click','.input-area',function () {
             //如果有值先备份一份
-            // if(self.pickerRecord.length>0){
-            //     self.dataBak=self.pickerRecord.slice(0);
-            // }
             self.tabDom.show();
             self.domMaster.find('.ico-arrow').addClass('activeMove')
         });
@@ -202,6 +199,7 @@ $.extend(MqPicker.prototype,{
                     if(labelName!== self.tabData[index].name){
                         self.tabData[index].name=labelName;
                         self.tabData[index].value=labelVal;
+
                         //清空下一级dom
                         self.domMaster.find('.input-area-item-'+index).nextAll().html('');
                         var level=$(this).parent().attr('level');
@@ -243,8 +241,6 @@ $.extend(MqPicker.prototype,{
                 checkedVal=_that.val();
             if(!checked){
                 _that.data().checked=true;
-                // self.tabData[lastIndex].value=[];
-                // self.tabData[lastIndex].name=[];
                 self.tabData[lastIndex].name.push(checkedName);
                 self.tabData[lastIndex].value.push(checkedVal)
             }else {//移除
@@ -315,10 +311,10 @@ $.extend(MqPicker.prototype,{
         self.tabDom.on("click",'.aMap-btn-submit',function () {
             //打印产出所有记录
             console.log('tabData',self.tabData);
-            //output:'value',//默认value,最后一级value
-            //allName,全部名称
-            //allValue,全部value
-            //产出name,最后一级名称
+                //output:'value',//默认value,最后一级value
+                //allName,全部名称
+                //allValue,全部value
+                //产出name,最后一级名称
             self.outClear();//重置输出
             //重新查询获取
             if(self.param.output==='value'){
@@ -384,6 +380,8 @@ $.extend(MqPicker.prototype,{
         }
     },
 
+
+
     pickerSearch:function (name,indexEdit,editArray){
         //兼顾自定义接口，所以数据都存在tabData里
         var self=this;
@@ -404,7 +402,7 @@ $.extend(MqPicker.prototype,{
                     if(indexEdit){
                         self.updateArea(districtListNext,indexEdit,editArray[index])
                     }else{
-                        self.updateArea(districtListNext) //通用方法
+                        self.updateArea(districtListNext); //通用方法
                     }
 
                 }
@@ -585,7 +583,7 @@ $.extend(MqPicker.prototype,{
         //为自定义添加转义adcode=value
         if(self.param.pickerClass==='pickerPost' || self.param.pickerClass==='pickerAreaPost'){
             areaData.forEach(function (item) {
-                item.adcode=item.value;
+                item.adcode=item.adcode || item.value;
                 item.level=item.level || "";
             })
         }
@@ -680,7 +678,18 @@ $.extend(MqPicker.prototype,{
         self.tabData[0].name=text;
         //查询市
         self.pickerSearch(array[0],1,array);
-        self.pickerSearch(array[1],2,array);
+
+        //自定义区
+        if(self.param.pickerClass==='pickerPost' || self.param.pickerClass==='pickerAreaPost'){
+            self.param.loadAjax({name:array[1]})
+                .done(function(data){
+                    console.log("数据",data.data);
+                    self.updateArea(data.data,2,array[2])
+                });
+        }else {//查询区
+            self.pickerSearch(array[1],2,array);
+        }
+
 
     },
 

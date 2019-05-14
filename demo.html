@@ -90,7 +90,12 @@
         loadAjax:test
     </code>
 </div>
-<p class="demo10"><span class="button">点击获取值</span>：<span class="txt"></span></p>
+
+<p class="demo10">
+    <span class="button">点击清除</span>
+    <span class="edit">点击回写</span>
+    <span class="console">console</span>
+</p>
 
 </body>
 
@@ -157,7 +162,7 @@
             loadAjax:test
         });
 
-        var url="https://www.easy-mock.com/mock/59a9210de0dc66334198c0cd/data";
+        var url="https://www.easy-mock.com/mock/59a9210de0dc66334198c0cd/example/data";
         function test(data){
             return $.ajax({
                 url: url,
@@ -172,6 +177,14 @@
 
         $(".demo10 .button").on("click",function () {
             $(".demo10 .txt").html(demoTen.outValue)
+        });
+
+        $(".demo10 .edit").on("click",function () {
+            demoTen.pickerRewrite(["420000","420500",["123456"]])
+        });
+
+        $(".demo10 .console").on("click",function () {
+            console.log(demoTen.tabData)
         });
 
         $(".demo1 .edit").on("click",function () {
