@@ -20,6 +20,16 @@ https://lbs.amap.com/api/javascript-api/summary
 
 ![Image text](https://raw.githubusercontent.com/justin107/mqPicker/master/img-folder/20190514105413.png)
 
+ pickerArea,默认省市区，
+
+ pickerCity,默认省市,
+
+ pickerCityArea,默认市区,
+
+ pickerAreaPost,省市自定义区
+
+ pickerPost,只接受POST自定义数据，单级选择
+
 
 功能点
 
