@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mqPicker demo</title>
+    <script src="https://libs.cdnjs.net/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <style type="text/css" lang="scss">
+        body {text-align: center}
+        code {
+            word-wrap: break-word;word-break: break-all;color: #2eb6aa;
+        }
+        body > div{
+            width: 500px; margin: 0 auto;
+        }
+        p > span {cursor: pointer;border: 1px solid #ccc;margin: 0 10px;padding: 3px 10px;}
+
+    </style>
+
+</head>
+
+<body>
+
+<!--<div id="pickerMap" class="aMap-picker-map"></div>-->
+<h2>MqPicker基本配置</h2>
+<code>
+    new MqPicker({
+        some configure
+    })
+</code>
+
+<h3>普通省市区(单选)</h3>
+<div id="demo1"></div>
+
+<div>
+    <code>
+        lastIsMultiple:false,
+    </code>
+</div>
+
+<p class="demo1">
+    <span class="button">点击清除</span>
+    <span class="edit">点击回写</span>
+    <span class="console">console</span>
+</p>
+
+<h3>普通省市区(多选)</h3>
+<div id="demo2"></div>
+
+<div>
+    <code>
+        lastIsMultiple:true,
+    </code>
+</div>
+
+<p class="demo2">
+    <span class="button">点击清除</span>
+    <span class="edit">点击回写</span>
+    <span class="console">console</span>
+</p>
+
+<h3>普通省市区(自定义提示)</h3>
+<div id="demo3"></div>
+
+<div>
+    <code>
+        placeholderText:'你试试换个提示'
+    </code>
+</div>
+
+<p class="demo3"><span class="button">点击获取值</span>：<span class="txt"></span></p>
+
+<h3>省市区(弹窗居中显示)</h3>
+<div id="demo4"></div>
+
+<div>
+    <code>
+        layPosition:'layer',
+    </code>
+</div>
+<p class="demo4"><span class="button">点击获取值</span>：<span class="txt"></span></p>
+
+
+<h3>自定义区接口(多选)</h3>
+<div id="demo5"></div>
+
+<div>
+    <code>
+        pickerLevel:{
+            name:['自定义'],
+        },
+        pickerClass:'pickerPost',
+        loadAjax:test,
+        lastIsMultiple:true,
+    </code>
+</div>
+
+<p class="demo5">
+    <span class="button">点击清除</span>
+    <span class="edit">点击回写</span>
+    <span class="console">console</span>
+</p>
+
+
+<h3>自定义区接口(单选)</h3>
+<div id="demo6"></div>
+
+<div>
+    <code>
+        pickerLevel:{
+        name:['自定义'],
+        },
+        pickerClass:'pickerPost',
+        loadAjax:test，
+        lastIsMultiple:false,
+    </code>
+</div>
+
+<p class="demo6">
+    <span class="button">点击清除</span>
+    <span class="edit">点击回写</span>
+    <span class="console">console</span>
+</p>
+
+
+<h3>省市-自定义区接口</h3>
+<div id="demo10"></div>
+
+<div>
+    <code>
+        pickerClass:'pickerAreaPost',
+        loadAjax:test
+    </code>
+</div>
+
+<p class="demo10">
+    <span class="button">点击清除</span>
+    <span class="edit">点击回写</span>
+    <span class="console">console</span>
+</p>
+
+</body>
+
+
+
+
+
+<style lang="scss">
+
+</style>
+
+<script src="./index.js">
+    // import MqPicker from "./js/mqPicker"
+
+
+
+</script>
+</html>
