@@ -1,5 +1,3 @@
-
-
 var MqPicker = function (setting) {
     //可配参数
     this.param = {
@@ -37,7 +35,8 @@ var MqPicker = function (setting) {
     this.param.areaType = this.param.lastIsMultiple ? 'checkbox' : 'radio';
     this.onceLoad = true;//是否初次加载，省数据不用重复请求
     this.isLastDom = false;//考虑一下优化
-    this.tabData = [];//储存临时数据
+    this.tabData = [];//
+
     this.rndNum = Math.random().toString(36).substr(2);//随机数
     this.tabHeadVal = '0';
     this.outName = '';
