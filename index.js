@@ -1,4 +1,4 @@
-import MqPicker from "./js/mqPicker"
+// import MqPicker from "./js/mqPicker"
 
 //高德相关
 function loadAmapApi(amapKey,amapVersion) {
