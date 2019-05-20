@@ -170,6 +170,11 @@
                 self.domMaster.find('.ico-arrow').addClass('activeMove')
             });
 
+            self.domMaster.on('click', '.input-placeholder', function () {
+                self.tabDom.show();
+                self.domMaster.find('.ico-arrow').addClass('activeMove')
+            });
+
             self.tabDom.on('change', "input[name='tab-head-radio-" + self.rndNum + "']", function () {
                 self.tabHeadVal = $(this).val();
                 self.tabDom.find('.tab-pane-' + self.tabHeadVal).show().siblings().hide();
