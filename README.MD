@@ -55,6 +55,4 @@ https://lbs.amap.com/api/javascript-api/summary
 
 Next
 
-1、支持更多回显
-
-2、简化代码逻辑结构
+简化代码逻辑结构
