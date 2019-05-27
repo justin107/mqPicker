@@ -137,6 +137,9 @@
             if (self.param.pickerClass !== 'pickerPost') {
                 self.pickerSearch(self.param.searchName)
             } else {
+
+
+
                 // var postData=self.param.loadAjax();
                 // console.log(postData)
                 // self.updateArea(postData)
@@ -164,16 +167,34 @@
                 })
             }
 
-            self.domMaster.on('click', '.input-area', function () {
-                //如果有值先备份一份
+            self.domMaster.on('click', '.aMap-picker-input-box', function () {
                 self.tabDom.show();
                 self.domMaster.find('.ico-arrow').addClass('activeMove')
+
+                // if(self.param.pickerClass === 'pickerPost'){
+                //     self.param.loadAjax()
+                //     .done(function (data) {
+                //         console.log("数据", data.data);
+                //         self.updateArea(data.data)
+                //     });
+                // }
             });
 
-            self.domMaster.on('click', '.input-placeholder', function () {
-                self.tabDom.show();
-                self.domMaster.find('.ico-arrow').addClass('activeMove')
-            });
+            // self.domMaster.on('click', '.input-area', function () {
+            //     //如果有值先备份一份
+            //     self.tabDom.show();
+            //     self.domMaster.find('.ico-arrow').addClass('activeMove')
+            // });
+            //
+            // self.domMaster.on('click', '.input-placeholder', function () {
+            //     self.tabDom.show();
+            //     self.domMaster.find('.ico-arrow').addClass('activeMove')
+            // });
+            //
+            // self.domMaster.on('click', '.ico-arrow', function () {
+            //     self.tabDom.show();
+            //     self.domMaster.find('.ico-arrow').addClass('activeMove')
+            // });
 
             self.tabDom.on('change', "input[name='tab-head-radio-" + self.rndNum + "']", function () {
                 self.tabHeadVal = $(this).val();

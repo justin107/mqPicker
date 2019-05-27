@@ -35,7 +35,7 @@
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
-      color: #9a9a9a; }
+      color: #c6c6c6; }
     .aMap-picker-area .aMap-picker-input-box .input-area {
       border-radius: 0;
       padding: 0 30px 0 10px;
@@ -46,7 +46,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       cursor: pointer;
-      color: #666;
+      color: #222222;
       font-size: 0; }
       .aMap-picker-area .aMap-picker-input-box .input-area > span {
         font-size: 14px; }
@@ -54,15 +54,16 @@
       position: absolute;
       right: 9px;
       top: 50%;
-      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAoUlEQVQ4T93SMQoCQQyF4W9FUcRrWdloIQhiZ+WV7ATBQlALL2VlqSgqgUFk2RWW7Xa6ycz7k7wkU/NkNfUaBhhiiTmeJd60scUG5/jz60E3BW8YF0BCfEQPI9zzgLh3cMILEzxSJRE/JOj0J144hci0Rz9lCkaUe8Uswb8dlo2xhR0GCOAFC7zz3vzbg3hbp3JXReIiDyovZsM2sXL/IfgABvwZETHyG7YAAAAASUVORK5CYII=");
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACXklEQVRoQ+1WPajTUBQ+57ZEEQdxEBwcXBxcXEJIThAXFRcd3vaWp4vgorOLm+AsCC6CgiKIk8sTBIUn7U0qdSwKHRR0UOpQXLS18ciFFirYl5t7Eh8PbraQ833n+7kJQdjlF+5y/eAN7HSDvgHfgDABf4SEAYrhvgFxhEIC34AwQDHcNyCOUEiwbQP9fv/wdDq9DwB7hXtc4T/b7falKIq+rCIoPUJ5np8pimITEduuKlxwzDxDxHNE9HI7fKkBA86ybI2ZnwKAchHjgPnNzGtpmj4rw1oZmJu4yMwPyghreM7MvJGm6SMbLmsDhqzb7V5DxNs2xK4ziHg5SZJ7tvhKBgyp1voWAFy3XVBljplvpGl6swqmsoG5ibsAcKXKIovZO0R01WLurxEnA3MTjwFgverCFfMPiWjDhcvZADMrrfVzRDzrsniBYeYnRLSOiOzC42zALBsOh3tGo9ErACCX5cy8SUQXELFwwRuMyIAhGAwG+8fjcQcRT1QU8ToIgtNhGP6qiKvnHVhm0VofZOYMEY9ZinkLACeJ6Ifl/MoxcQMLZvPfNJlMeoh4pETUO6VUHMfxd6n4Wo7Qsoher3d0NpvliHhohbgPQRBEYRh+q0N87QYMYZ7nx4ui6CLigWWRzPyp1WpRHMef6xLfiAFD2ul0QqXUFgDsM/fMPFJKRUmSfKxTfGMGDLHW+hQAvAAA86LGRPS+bvGNGjDkWZadZ+avRPSmCfGNG2hK9DJvbZ/R/yH2Xzu8gZ1KfrHXN+AbECbgj5AwQDHcNyCOUEjgGxAGKIb7BsQRCgn+AOFiozGazv5YAAAAAElFTkSuQmCC");
       background-repeat: no-repeat;
-      width: 10px;
-      height: 10px;
+      width: 15px;
+      height: 15px;
       background-position: center center;
-      background-size: 10px 10px;
-      opacity: .8;
+      background-size: 15px 15px;
+      opacity: 1;
       transform: translateY(-50%);
-      transition: all .2s; }
+      transition: all .2s;
+      cursor: pointer; }
       .aMap-picker-area .aMap-picker-input-box .ico-arrow.activeMove {
         transform: translateY(-50%) rotate(-180deg); }
 
@@ -187,7 +188,7 @@
     .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-pane .no-data {
       text-align: center;
       font-size: 14px;
-      color: #9a9a9a;
+      color: #c6c6c6;
       padding: 20px; }
     .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-pane .tab-pane,
     .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-pane .tab-pane {
@@ -204,7 +205,8 @@
         color: #fff; }
       .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-pane .tab-pane input:disabled + span,
       .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-pane .tab-pane input:disabled + span {
-        color: #a9a9a9; }
+        color: #a9a9a9;
+        display: none; }
     .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-pane > div,
     .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-pane > div {
       display: none; }

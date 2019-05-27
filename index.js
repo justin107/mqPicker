@@ -84,7 +84,7 @@ window.apiLoad=function (){//异步加载
     function test(data){
         return $.ajax({
             url: url,
-            data:data,
+            data:data || {},
         })
     }
 
