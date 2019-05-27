@@ -138,7 +138,11 @@
                 self.pickerSearch(self.param.searchName)
             } else {
 
-
+                // self.param.loadAjax()
+                //     .done(function (data) {
+                //         console.log("数据", data.data);
+                //         self.updateArea(data.data, "0", [])
+                //     });
 
                 // var postData=self.param.loadAjax();
                 // console.log(postData)
@@ -171,30 +175,16 @@
                 self.tabDom.show();
                 self.domMaster.find('.ico-arrow').addClass('activeMove')
 
-                // if(self.param.pickerClass === 'pickerPost'){
-                //     self.param.loadAjax()
-                //     .done(function (data) {
-                //         console.log("数据", data.data);
-                //         self.updateArea(data.data)
-                //     });
-                // }
+                if(self.param.pickerClass === 'pickerPost' && self.onceLoad ){
+                    self.param.loadAjax()
+                        .done(function (data) {
+                            console.log("数据", data.data);
+                            self.onceLoad=false;
+                            self.updateArea(data.data, "0", [])
+                        });
+                }
             });
 
-            // self.domMaster.on('click', '.input-area', function () {
-            //     //如果有值先备份一份
-            //     self.tabDom.show();
-            //     self.domMaster.find('.ico-arrow').addClass('activeMove')
-            // });
-            //
-            // self.domMaster.on('click', '.input-placeholder', function () {
-            //     self.tabDom.show();
-            //     self.domMaster.find('.ico-arrow').addClass('activeMove')
-            // });
-            //
-            // self.domMaster.on('click', '.ico-arrow', function () {
-            //     self.tabDom.show();
-            //     self.domMaster.find('.ico-arrow').addClass('activeMove')
-            // });
 
             self.tabDom.on('change', "input[name='tab-head-radio-" + self.rndNum + "']", function () {
                 self.tabHeadVal = $(this).val();
@@ -220,14 +210,13 @@
 
                     //判断是否最后一个
                     if (lastIndex != index) {//不是
-                        $("input[name='tab-head-radio-" + self.rndNum + "'][value=" + nextIndex + "]")
-                            .prop('checked', true).change();
+                        $("input[name='tab-head-radio-" + self.rndNum + "'][value=" + nextIndex + "]").prop('checked', true).change();
                         //区分是否存在
                         if (labelName !== self.tabData[index].name) {
                             self.tabData[index].name = labelName;
                             self.tabData[index].value = labelVal;
 
-                            //清空下一级dom
+                            //清空下级dom
                             self.domMaster.find('.input-area-item-' + index).nextAll().html('');
                             var level = $(this).parent().attr('level');
                             if (self.param.pickerClass === 'pickerAreaPost' && level === "city") {
@@ -241,10 +230,13 @@
                             }
                         }
 
-                        //重置下一级数据
+                        //重置下级数据
                         for (var m = nextIndex; m < levelNum; m++) {
                             self.tabData[m].name = '';
                             self.tabData[m].value = '';
+                            //重置下级DOM
+                            self.domMaster.find('.tab-pane-' + m).find('.tab-pane-box').html('<p class="no-data">暂无数据</p>');
+
                         }
                         if (self.param.lastIsMultiple && lastIndex + 1 === levelNum) {
                             self.tabData[nextIndex].name = [];
@@ -305,6 +297,7 @@
                 self.tabData[lastIndex].value = [];
                 self.tabData[lastIndex].name = [];
 
+
                 var lastDom = self.tabDom.find('div.tab-pane:last');
 
                 lastDom.find("input[type='checkbox']").each(function () {
@@ -320,6 +313,7 @@
                     lastInputItem.html(self.tabData[lastIndex].name.join(self.param.areaSeparator));
                 }
                 $(this).hide().siblings('.aMap-btn-cancel').show();//和取消按钮互斥
+                self.isPlaceholder();
             });
 
             //按钮-取消,只可能checkbox情况下出现

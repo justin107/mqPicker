@@ -183,7 +183,7 @@
       margin: 5px 0; }
       .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-pane label span,
       .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-pane label span {
-        padding: 0 10px; }
+        padding: 3px 10px; }
     .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-pane .no-data,
     .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-pane .no-data {
       text-align: center;
@@ -222,6 +222,7 @@
       .aMap-picker-area .aMap-picker-tab .aMap-picker-tab-pane .tab-pane-province dl dt {
         text-align: center;
         font-size: 14px;
+        color: #2eb6aa;
         line-height: 1;
         width: 30px; }
       .aMap-picker-tab-out .aMap-picker-tab .aMap-picker-tab-pane .tab-pane-province dl input[type='radio'] + span:hover,

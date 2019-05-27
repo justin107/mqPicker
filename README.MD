@@ -55,6 +55,4 @@ https://lbs.amap.com/api/javascript-api/summary
 
 Next
 
-自定义接口真实调试
-
 简化代码逻辑结构

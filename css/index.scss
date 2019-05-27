@@ -146,7 +146,7 @@ $buttonPadding                  : 0 20px;//按钮内间距
 
       input[type='radio'],input[type='checkbox'] {visibility: hidden;position: absolute;left:-99999em;}
       label {display: inline-block;vertical-align: top;font-size: $aMap-picker-fontSize;cursor: pointer;color: $tab-pane-fontColor;margin: 5px 0;
-        span {padding: 0 10px;}
+        span {padding: 3px 10px;}
       }
 
       .no-data {text-align: center;font-size:$aMap-picker-fontSize;color: $placeholderColor;padding: 20px;}
@@ -180,6 +180,7 @@ $buttonPadding                  : 0 20px;//按钮内间距
           dt {
             text-align: center;
             font-size: $aMap-picker-fontSize;
+            color: $primaryColor;
             //padding-top: 5px;
             //padding-right: 10px;
             line-height: 1;
