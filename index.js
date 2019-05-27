@@ -162,6 +162,4 @@ window.apiLoad=function (){//异步加载
         console.log(demoFix.tabData)
     });
 
-
-
 };
