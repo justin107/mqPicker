@@ -409,6 +409,7 @@
                 index = indexEdit * 1 || self.tabHeadVal * 1,
                 indexData = self.tabData[index],
                 val = name || indexData.value;
+                val=val+'';
             window.districtSearch.search(val, function (status, result) {
                 if (status == 'complete' && result.districtList.length === 1) {
                     districtListNext = result.districtList[0].districtList;

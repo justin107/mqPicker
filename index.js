@@ -106,7 +106,7 @@ window.apiLoad=function (){//异步加载
     });
 
     $(".demo1 .edit").on("click",function () {
-        demoOne.pickerRewrite(["420000","420500","420528"])
+        demoOne.pickerRewrite([420000,420500,420528])
         // demoOne.pickerRewrite(["420000","429000","429004"])//测试回写
     });
 
